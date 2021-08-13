@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="min-vh-100 min-vw-100 bg-image position-absolute top-0 start-0">
+</div>
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+  <div class="login-container">
+    <div class="animate__animated animate__zoomIn animate__fastest login-modal w-100 shadow rounded-3 bg-white">
+      <div class="text-center mb-5">
+        <img src="assets/images/logo-light.svg"
+             draggable="false"
+             alt="Aline Financial" style="width: 85px"/>
+      </div>
+      <app-login-form (useCredentials)="handleLogin($event)"></app-login-form>
+      <div class="text-center mt-5">
+        Need an account?
+        <br/>
+        <button class="btn btn-outline-secondary rounded-pill my-2"
+                routerLink="/get-started">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

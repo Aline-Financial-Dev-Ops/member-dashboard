@@ -1,0 +1,18 @@
+@import "./colors"
+
+.line-divider
+  color: $primary
+  opacity: 1
+  width: 100%
+  min-height: 0.15rem
+  padding: 0
+  animation: line-divider-enter 0.5s ease
+
+@keyframes line-divider-enter
+  from
+    width: 0
+    opacity: 0
+
+  to
+    width: 100%
+    opacity: 1

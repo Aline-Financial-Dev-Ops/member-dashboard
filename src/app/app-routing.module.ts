@@ -1,14 +1,20 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {LoginComponent} from "./login/login.component";
-import {RegistrationComponent} from "./registration/registration.component";
+import {NavigationError, Router, RouterModule, Routes} from '@angular/router';
+import {DashboardComponent} from '@dashboard/dashboard.component';
+import {LoginComponent} from '@login/login.component';
+import {RegistrationComponent} from '@registration/registration.component';
+import {AppRoutingTitles} from './app-routing.titles';
+import {filter} from 'rxjs/operators';
+import {NotFoundComponent} from '@app/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: DashboardComponent
+    component: DashboardComponent,
+    data: {
+      title: AppRoutingTitles.DASHBOARD
+    }
   },
   {
     path: 'dashboard',
@@ -16,11 +22,25 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {
+      title: AppRoutingTitles.LOGIN
+    }
+  },
+  {
+    path: 'get-started',
+    component: RegistrationComponent,
+    data: {
+      title: AppRoutingTitles.GET_STARTED
+    }
   },
   {
     path: 'register',
-    component: RegistrationComponent
+    redirectTo: 'get-started'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
@@ -33,4 +53,13 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router) {
+    router.events.pipe(filter(e => e instanceof NavigationError))
+      .subscribe((e) => {
+        if (e instanceof NavigationError) {
+          console.error(`Route not found: '${e.url}'`);
+        }
+      });
+  }
+}

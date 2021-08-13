@@ -1,0 +1,27 @@
+@import "bootstrap-grid"
+
+.bg-image
+  background-image: url("~src/assets/images/architecture.jpg")
+  background-size: cover
+  background-position: center
+  filter: blur(3px)
+
+.login-container
+  width: 300px
+
+.login-modal
+  max-width: 300px
+  padding: 1rem 2.5rem
+
+@include media-breakpoint-up(sm)
+  .login-modal
+    max-height: none
+
+@include media-breakpoint-up(md)
+  .login-container
+    width: 360px
+
+  .login-modal
+    max-width: 360px
+    max-height: none
+    padding: 3.5rem 2.5rem
