@@ -5,6 +5,8 @@ import {CoreModule} from '@core/core.module';
 import {UserRegistration} from '@core/models/user-registration.model';
 import {Observable} from 'rxjs';
 import {UserResponse} from '@core/models/user-response.model';
+import {ConfirmUserRegistration} from '@core/models/confirm-user-registration.model';
+import {ConfirmUserRegistrationResponse} from '@core/models/confirm-user-registration-response.model';
 
 /**
  * Registration Service
@@ -27,6 +29,16 @@ export class RegistrationService extends BaseHttpService {
    */
   registerUser(registration: UserRegistration): Observable<HttpResponse<UserResponse>> {
     return this.http.post<UserResponse>(this.getApi('/users/registration'), registration, {
+      observe: 'response'
+    });
+  }
+
+  /**
+   * Confirms user registration when the observable is subscribed to.
+   * @param registration The ConfirmUserRegistration model used as the request body.
+   */
+  confirmRegistration(registration: ConfirmUserRegistration): Observable<HttpResponse<ConfirmUserRegistrationResponse>> {
+    return this.http.post<ConfirmUserRegistrationResponse>(this.getApi('/users/confirmation'), registration, {
       observe: 'response'
     });
   }
