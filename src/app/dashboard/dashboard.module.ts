@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {DashboardComponent} from './dashboard.component';
-import { DashboardNavComponent } from './dashboard-nav/dashboard-nav.component';
-import { SettingsComponent } from './settings/settings.component';
+import {DashboardNavComponent} from './dashboard-nav/dashboard-nav.component';
+import {SettingsComponent} from './settings/settings.component';
+import {CommonModule} from '@angular/common';
+import {DashboardRoutingModule} from '@dashboard/dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { SettingsComponent } from './settings/settings.component';
     SettingsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    DashboardRoutingModule
   ]
 })
 export class DashboardModule { }

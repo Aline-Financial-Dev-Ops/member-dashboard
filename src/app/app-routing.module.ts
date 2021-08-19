@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {NavigationError, Router, RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from '@dashboard/dashboard.component';
 import {LoginComponent} from '@login/login.component';
 import {RegistrationComponent} from '@registration/registration.component';
 import {AppRoutingTitles} from './app-routing.titles';
@@ -10,16 +9,11 @@ import {RegistrationConfirmationComponent} from '@registration/registration-conf
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    component: DashboardComponent,
+    path: 'dashboard',
+    loadChildren: () => import('@dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {
       title: AppRoutingTitles.DASHBOARD
     }
-  },
-  {
-    path: 'dashboard',
-    redirectTo: ''
   },
   {
     path: 'login',
