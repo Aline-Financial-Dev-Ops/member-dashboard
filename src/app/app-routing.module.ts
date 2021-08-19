@@ -6,6 +6,7 @@ import {RegistrationComponent} from '@registration/registration.component';
 import {AppRoutingTitles} from './app-routing.titles';
 import {filter} from 'rxjs/operators';
 import {NotFoundComponent} from '@app/not-found/not-found.component';
+import {RegistrationConfirmationComponent} from '@registration/registration-confirmation/registration-confirmation.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'register',
     redirectTo: 'get-started'
+  },
+  {
+    path: 'confirmation',
+    component: RegistrationConfirmationComponent
   },
   {
     path: '**',
