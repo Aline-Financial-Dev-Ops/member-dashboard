@@ -3,12 +3,18 @@ import {RouterModule, Routes} from '@angular/router';
 import {SettingsComponent} from '@dashboard/settings/settings.component';
 import {AccountsDashboardComponent} from '@dashboard/accounts-dashboard/accounts-dashboard.component';
 import {DashboardComponent} from '@dashboard/dashboard.component';
+import {SummaryComponent} from '@dashboard/summary/summary.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: SummaryComponent
+      },
       {
         path: 'accounts',
         component: AccountsDashboardComponent
