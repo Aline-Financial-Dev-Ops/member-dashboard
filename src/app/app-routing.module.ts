@@ -6,6 +6,7 @@ import {AppRoutingTitles} from './app-routing.titles';
 import {filter} from 'rxjs/operators';
 import {NotFoundComponent} from '@app/not-found/not-found.component';
 import {RegistrationConfirmationComponent} from '@registration/registration-confirmation/registration-confirmation.component';
+import {ForgotPasswordComponent} from '@login/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,13 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       title: AppRoutingTitles.LOGIN
+    }
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent,
+    data: {
+      title: AppRoutingTitles.FORGOT_PASSWORD
     }
   },
   {

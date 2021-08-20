@@ -2,5 +2,6 @@ export enum AppRoutingTitles {
   APP = 'Aline Financial',
   DASHBOARD = 'Dashboard',
   LOGIN = 'Login',
-  GET_STARTED = 'Get Started'
+  GET_STARTED = 'Get Started',
+  FORGOT_PASSWORD = 'Forgot Password'
 }
