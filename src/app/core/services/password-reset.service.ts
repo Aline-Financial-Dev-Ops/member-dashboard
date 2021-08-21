@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {LoginModule} from '@login/login.module';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {BaseHttpService} from '@core/services/base-http.service';
 import {ResetPasswordAuthentication} from '@core/models/reset-password-authentication.model';
 import {Observable} from 'rxjs';
 import {ResetPasswordRequest} from '@core/models/reset-password-request.model';
+import {CoreModule} from '@core/core.module';
 
 @Injectable({
-  providedIn: LoginModule
+  providedIn: CoreModule
 })
 export class PasswordResetService extends BaseHttpService {
 

@@ -19,7 +19,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         message: 'We didn\'t receive a response. You may have lost your connection.'
       });
     } else {
-      console.error(`Something went wrong. ${error.error}.`);
+      console.error(`Something went wrong. ${error.error}`);
     }
 
     return throwError(error.error);
