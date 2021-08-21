@@ -6,19 +6,29 @@
   background-size: cover
   background-position: center
   filter: blur(3px)
+  position: absolute
+  top: 0
+  left: 0
+  min-width: 100vw
+  min-height: 100vh
+  display: none
 
 .app-modal-container
-  width: 300px
+  min-width: 300px
 
 .app-modal
-  max-width: 300px
-  padding: 1rem 2.5rem
+  width: 100%
+  padding: 2.5rem
+  box-shadow: none
 
 @include media-breakpoint-up(sm)
   .app-modal
     max-height: none
 
 @include media-breakpoint-up(md)
+  .bg-image
+    display: block
+
   .app-modal-container
     width: 360px
 
@@ -26,6 +36,7 @@
     max-width: 360px
     max-height: none
     padding: 3.5rem 2.5rem
+    box-shadow: $box-shadow
 
 .line-divider
   color: $primary
