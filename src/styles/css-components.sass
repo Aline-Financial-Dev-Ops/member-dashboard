@@ -18,8 +18,25 @@
 
 .app-modal
   width: 100%
-  padding: 2.5rem
+  padding: 1.5rem
   box-shadow: none
+
+.otp-input
+  white-space: nowrap
+  overflow-x: hidden
+  padding-block: 1.5rem
+
+.single-char-input
+  display: inline-block
+  text-align: center
+  padding-inline: 1ch
+  margin: .2rem
+  width: 3ch
+  font-size: $font-size-lg
+  border: none
+  border-bottom: $primary 2px solid
+  box-shadow: none
+  outline: none
 
 @include media-breakpoint-up(sm)
   .app-modal

@@ -23,7 +23,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 0;
+  currentTemplate = 1;
 
   createOtpForm: FormGroup;
   sendingOtp = false;
