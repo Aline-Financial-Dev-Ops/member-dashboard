@@ -23,7 +23,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 1;
+  currentTemplate = 0;
 
   createOtpForm: FormGroup;
   sendingOtp = false;
@@ -34,8 +34,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
         Validators.required,
         ValidatorFunctions.usernameValidator()
       ]),
-      'email': new FormControl('', [
-        Validators.email,
+      'contactMethod': new FormControl('phone', [
         Validators.required
       ])
     });
