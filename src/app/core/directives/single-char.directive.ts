@@ -1,57 +1,59 @@
-import {Directive, ElementRef, Inject, Input, OnInit, Renderer2} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
+import {
+  ComponentFactoryResolver,
+  ComponentRef,
+  Directive,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewContainerRef
+} from '@angular/core';
+import {SingleCharInputComponent} from '@core/components/single-char-input/single-char-input.component';
+import {ControlValueAccessor, NgModel} from '@angular/forms';
+import {SingleCharValue} from '@core/models/single-char-value.model';
 
 @Directive({
-  selector: '[appSingleChar]'
+  selector: '[appSingleChar]',
+  providers: [
+    NgModel
+  ]
 })
 export class SingleCharDirective implements OnInit {
 
   @Input()
   inputLength = 0;
 
-  currentIndex = 0;
+  @Output()
+  valueChange?: EventEmitter<string>;
+  valueArray: string[];
+  valueAccessor: ControlValueAccessor | null;
 
-  constructor(private el: ElementRef,
+  constructor(private container: ViewContainerRef,
               private renderer: Renderer2,
-              @Inject(DOCUMENT) private document: Document) {
-    this.renderer.addClass(this.el.nativeElement, 'otp-input');
+              private resolver: ComponentFactoryResolver,
+              private model: NgModel) {
+    this.valueArray = [];
+    this.valueAccessor = model.valueAccessor;
   }
 
-  createInput(index: number): any {
-    const input = this.document.createElement('input');
-    input.maxLength = 1;
-    input.setAttribute('mask', '\\d*');
-    input.setAttribute('pattern', '[0-9]*');
-    input.setAttribute('data-index', String(index));
-    this.renderer.addClass(input, 'single-char-input');
-    this.renderer.addClass(input, 'fw-bold');
-    this.renderer.addClass(input, 'text-primary');
-    input.addEventListener('keyup', this.goNext.bind(this));
-    input.addEventListener('focus', this.setIndex.bind(this));
-    input.value='';
-    return input;
+  createInput(i: number): ComponentRef<SingleCharInputComponent> {
+    const factory = this.resolver.resolveComponentFactory(SingleCharInputComponent);
+    const ref = this.container.createComponent(factory);
+    ref.instance.valueIndex = i;
+    ref.instance.valueArray = this.valueArray;
+    ref.instance.valueChange = new EventEmitter<SingleCharValue>();
+    ref.instance.valueChange.subscribe(value => this.onValueChange(value));
+    return ref;
   }
 
-  setIndex(e: any) {
-    this.currentIndex = parseInt(e.target.getAttribute('data-index'));
-  }
-
-  goNext(e: any) {
-    const index = parseInt(e.target.getAttribute('data-index'));
-    if (index < this.inputLength - 1
-      && e.target.value.length > 0
-      && !isNaN(e.key)) {
-      const nextInput = this.el.nativeElement
-        .querySelector(`input.single-char-input[data-index='${index + 1}']`);
-        nextInput.focus();
-    }
+  onValueChange({array}: SingleCharValue) {
+    this.valueChange?.emit(array.join(''));
   }
 
   ngOnInit() {
-    console.log('Initialize input.');
-    console.log(this.inputLength);
     for (let i = 0; i < this.inputLength; i++) {
-      this.renderer.appendChild(this.el.nativeElement, this.createInput(i));
+      this.createInput(i);
     }
   }
 
