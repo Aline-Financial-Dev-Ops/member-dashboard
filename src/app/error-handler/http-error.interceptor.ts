@@ -12,6 +12,8 @@ const ignoreRequestApiEndpoints: string[] = [
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
+  api = environment.application.api;
+
   constructor(
     private modal: GlobalModalService
   ) {}
@@ -31,10 +33,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (!ignoreRequestApiEndpoints.includes(this.getEndpoint(request.url))) {
+      return next.handle(request).pipe(catchError(err => this.handleError(err)));
+    }
     return next.handle(request);
   }
 
   getEndpoint(url: string): string {
-    return url.replace(environment.application.api, '');
+    return url.replace(this.api, '');
   }
 }
