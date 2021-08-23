@@ -1,12 +1,14 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {SingleCharValue} from '@core/models/single-char-value.model';
 
 @Component({
   template: `
     <input type="text"
+           #thisInput
            mask="\\d{1}"
            [(ngModel)]="valueArray[valueIndex]"
            (ngModelChange)="onValueChange()"
+           (keyup)="onKeyup($event)"
            inputmode="numeric"
            class="single-char-input"
            maxlength="1"/>
@@ -15,8 +17,14 @@ import {SingleCharValue} from '@core/models/single-char-value.model';
 })
 export class SingleCharInputComponent {
 
+  @ViewChild('thisInput')
+  inputEl!: ElementRef;
+
   @Output()
   valueChange!: EventEmitter<SingleCharValue>;
+
+  @Output()
+  keyupEvent!: EventEmitter<{event: any, valueEvent: SingleCharValue}>;
 
   @Input()
   valueArray!: string[];
@@ -35,6 +43,18 @@ export class SingleCharInputComponent {
         index: this.valueIndex
       }
     );
+  }
+
+  onKeyup(event: any) {
+    this.keyupEvent.emit({event, valueEvent: {
+        value: this.valueArray[this.valueIndex],
+        array: this.valueArray,
+        index: this.valueIndex
+      }});
+  }
+
+  setFocus() {
+    this.inputEl.nativeElement.focus();
   }
 
 }
