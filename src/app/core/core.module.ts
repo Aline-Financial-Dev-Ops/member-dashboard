@@ -12,8 +12,9 @@ import {SingleCharDirective} from '@core/directives/single-char.directive';
     HttpClientModule,
     ErrorHandlerModule,
   ],
-  exports: [
-    HttpClientModule
-  ]
+    exports: [
+        HttpClientModule,
+        SingleCharDirective
+    ]
 })
 export class CoreModule { }

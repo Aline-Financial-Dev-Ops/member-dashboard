@@ -9,6 +9,7 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
 import {PasswordResetFormComponent} from './forgot-password/password-reset-form/password-reset-form.component';
 import {CoreModule} from '@core/core.module';
 import {OtpInputComponent} from './forgot-password/otp-input/otp-input.component';
+import {AppMaskModule} from '@app/app-mask.module';
 
 
 @NgModule({
@@ -19,12 +20,13 @@ import {OtpInputComponent} from './forgot-password/otp-input/otp-input.component
     PasswordResetFormComponent,
     OtpInputComponent
   ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    AppIconsModule,
-    CoreModule
-  ]
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        AppIconsModule,
+        CoreModule,
+        AppMaskModule
+    ]
 })
 export class LoginModule { }

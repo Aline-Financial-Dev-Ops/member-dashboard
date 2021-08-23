@@ -2,7 +2,6 @@ import {AfterViewInit, Component, TemplateRef, ViewChild, ViewContainerRef} from
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PasswordResetService} from '@core/services/password-reset.service';
 import {ResetPasswordAuthentication} from '@core/models/reset-password-authentication.model';
-import {catchError} from 'rxjs/operators';
 import {ValidatorFunctions} from '@core/validators/validator-functions';
 
 @Component({
