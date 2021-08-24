@@ -5,7 +5,7 @@ import {ResetPasswordAuthentication} from '@core/models/reset-password-authentic
 import {ValidatorFunctions} from '@core/validators/validator-functions';
 import {OtpAuthentication} from '@core/models/otp-authentication.model';
 import {ResetPasswordRequest} from '@core/models/reset-password-request.model';
-import {Observable, timer} from 'rxjs';
+import {timer} from 'rxjs';
 import {map, take} from 'rxjs/operators';
 
 @Component({
@@ -32,7 +32,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 1;
+  currentTemplate = 0;
 
   createOtpForm: FormGroup;
   resetPasswordForm: FormGroup;
@@ -45,6 +45,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
   verificationError?: string;
   resetPasswordError?: string;
   username = '';
+  currentContactMethod = '';
 
   constructor(private service: PasswordResetService) {
     this.createOtpForm = new FormGroup({
@@ -87,6 +88,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
   sendOtpCode() {
     const auth: ResetPasswordAuthentication = {...this.createOtpForm.value};
     this.username = auth.username;
+    this.currentContactMethod = auth.contactMethod;
     this.sendingOtp = true;
     this.disableOtpForm();
     this.service.authenticatePasswordReset(auth).subscribe(
@@ -176,17 +178,27 @@ export class PasswordResetFormComponent implements AfterViewInit {
   resendCodeBtnText = 'Resend Code';
 
   resendCode() {
+    this.service.authenticatePasswordReset({
+      username: this.username,
+      contactMethod: this.currentContactMethod
+    }).subscribe();
     this.resendingCode = true;
     this.coolDownTime = 30;
     timer(0, 1000)
       .pipe(take(this.coolDownTime))
       .pipe(map(i => this.coolDownTime - i))
       .pipe()
-      .subscribe(next => {
-        const ellipsesLen = (next % 3) + 1;
-        const ellipses = new Array(ellipsesLen + 1).join('.');
-        this.resendCodeBtnText = `Wait ${next}s${ellipses}`;
-      });
+      .subscribe(
+        next => {
+          const ellipsesLen = (next % 3) + 1;
+          const ellipses = new Array(ellipsesLen + 1).join('.');
+          this.resendCodeBtnText = `Wait ${next}s${ellipses}`;
+        },
+        err => console.error(err),
+        () => {
+          this.resendingCode = false;
+          this.resendCodeBtnText = 'Resend Code';
+        });
   }
 
 }
