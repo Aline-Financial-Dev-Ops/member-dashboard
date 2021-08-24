@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PasswordResetService} from '@core/services/password-reset.service';
 import {ResetPasswordAuthentication} from '@core/models/reset-password-authentication.model';
 import {ValidatorFunctions} from '@core/validators/validator-functions';
+import {OtpAuthentication} from '@core/models/otp-authentication.model';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -17,16 +18,24 @@ export class PasswordResetFormComponent implements AfterViewInit {
   @ViewChild('verification', {read: TemplateRef})
   verification!: TemplateRef<any>;
 
+  @ViewChild('resetPassword', {read: TemplateRef})
+  resetPassword!: TemplateRef<any>;
+
   @ViewChild('formContainer', {read: ViewContainerRef})
   formContainer!: ViewContainerRef;
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 0;
+  currentTemplate = 2;
 
   createOtpForm: FormGroup;
+  resetPasswordForm: FormGroup;
   sendingOtp = false;
+
+  verifyingOtp = false;
+
   otp = '';
+  verificationError?: string;
 
   constructor(private service: PasswordResetService) {
     this.createOtpForm = new FormGroup({
@@ -38,12 +47,24 @@ export class PasswordResetFormComponent implements AfterViewInit {
         Validators.required
       ])
     });
+    this.resetPasswordForm = new FormGroup({
+      'newPassword': new FormControl('', [
+        Validators.required,
+        ValidatorFunctions.passwordValidator()
+      ])
+    });
+    this.resetPasswordForm.addControl('confirmNewPassword',
+      new FormControl('', [
+        Validators.required,
+        ValidatorFunctions.confirmValues(this.resetPasswordForm.get('newPassword')!)
+      ]));
   }
 
   ngAfterViewInit(): void {
     this.templates = [
       this.sendOtp,
-      this.verification
+      this.verification,
+      this.resetPassword
     ];
     this.setCurrentTemplate();
   }
@@ -97,12 +118,30 @@ export class PasswordResetFormComponent implements AfterViewInit {
     this.otp = event;
   }
 
-  resetPassword() {
-    this.service.resetPassword({
+  verifyOtp() {
+    this.verifyingOtp = true;
+    const auth: OtpAuthentication = {
       username: this.createOtpForm.value.username,
-      otp: this.otp,
-      newPassword: 'N3wP@ssword123'
-    });
+      otp: this.otp
+    };
+
+    this.service.verifyOtp(auth)
+      .subscribe(
+        res => {
+          if (res.status === 200) {
+            this.nextTemplate();
+            this.verifyingOtp = false;
+          }
+        },
+        error => {
+          this.verificationError = error;
+          this.verifyingOtp = false;
+        }
+      );
+  }
+
+  otpIncorrectLength(): boolean {
+    return this.otp.length < 6;
   }
 
 }

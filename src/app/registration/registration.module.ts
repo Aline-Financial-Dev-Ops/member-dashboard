@@ -10,17 +10,13 @@ import {AppMaskModule} from '@app/app-mask.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from '@core/core.module';
 import {GlobalModalModule} from '@app/global-modal/global-modal.module';
-import {FormControlIndicatorComponent} from '@registration/registration-form/form-control-indicator.component';
-import {FormControlValidationIndicatorComponent} from '@registration/registration-form/form-control-validation-indicator.component';
-import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
+import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component';
 
 
 @NgModule({
   declarations: [
     RegistrationComponent,
     RegistrationFormComponent,
-    FormControlIndicatorComponent,
-    FormControlValidationIndicatorComponent,
     RegistrationConfirmationComponent
   ],
   imports: [
