@@ -4,6 +4,7 @@ import {PasswordResetService} from '@core/services/password-reset.service';
 import {ResetPasswordAuthentication} from '@core/models/reset-password-authentication.model';
 import {ValidatorFunctions} from '@core/validators/validator-functions';
 import {OtpAuthentication} from '@core/models/otp-authentication.model';
+import {ResetPasswordRequest} from '@core/models/reset-password-request.model';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -18,24 +19,30 @@ export class PasswordResetFormComponent implements AfterViewInit {
   @ViewChild('verification', {read: TemplateRef})
   verification!: TemplateRef<any>;
 
-  @ViewChild('resetPassword', {read: TemplateRef})
-  resetPassword!: TemplateRef<any>;
+  @ViewChild('resetPasswordTemp', {read: TemplateRef})
+  resetPasswordTemp!: TemplateRef<any>;
+
+  @ViewChild('resetSuccess', {read: TemplateRef})
+  resetSuccess!: TemplateRef<any>;
 
   @ViewChild('formContainer', {read: ViewContainerRef})
   formContainer!: ViewContainerRef;
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 2;
+  currentTemplate = 0;
 
   createOtpForm: FormGroup;
   resetPasswordForm: FormGroup;
-  sendingOtp = false;
 
+  sendingOtp = false;
   verifyingOtp = false;
+  resettingPassword = false;
 
   otp = '';
   verificationError?: string;
+  resetPasswordError?: string;
+  username = '';
 
   constructor(private service: PasswordResetService) {
     this.createOtpForm = new FormGroup({
@@ -64,7 +71,8 @@ export class PasswordResetFormComponent implements AfterViewInit {
     this.templates = [
       this.sendOtp,
       this.verification,
-      this.resetPassword
+      this.resetPasswordTemp,
+      this.resetSuccess
     ];
     this.setCurrentTemplate();
   }
@@ -76,6 +84,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   sendOtpCode() {
     const auth: ResetPasswordAuthentication = {...this.createOtpForm.value};
+    this.username = auth.username;
     this.sendingOtp = true;
     this.disableOtpForm();
     this.service.authenticatePasswordReset(auth).subscribe(
@@ -142,6 +151,29 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   otpIncorrectLength(): boolean {
     return this.otp.length < 6;
+  }
+
+  resetPassword() {
+    this.resettingPassword = true;
+
+    const request: ResetPasswordRequest = {
+      username: this.username,
+      newPassword: this.resetPasswordForm.value.newPassword,
+      otp: this.otp
+    };
+
+    this.service.resetPassword(request)
+      .subscribe(
+        res => {
+          if (res.status === 200) {
+            this.nextTemplate();
+            this.resettingPassword = false;
+          }
+        },
+        err => {
+          this.resetPasswordError = err;
+          this.resettingPassword = false;
+        });
   }
 
 }
