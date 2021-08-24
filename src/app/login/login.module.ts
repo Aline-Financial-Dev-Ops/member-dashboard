@@ -8,7 +8,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {PasswordResetFormComponent} from './forgot-password/password-reset-form/password-reset-form.component';
 import {CoreModule} from '@core/core.module';
-import {OtpInputComponent} from './forgot-password/otp-input/otp-input.component';
 import {AppMaskModule} from '@app/app-mask.module';
 
 
@@ -17,8 +16,7 @@ import {AppMaskModule} from '@app/app-mask.module';
     LoginComponent,
     LoginFormComponent,
     ForgotPasswordComponent,
-    PasswordResetFormComponent,
-    OtpInputComponent
+    PasswordResetFormComponent
   ],
     imports: [
         BrowserModule,

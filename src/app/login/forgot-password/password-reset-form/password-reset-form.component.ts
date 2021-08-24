@@ -22,10 +22,11 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 1;
+  currentTemplate = 0;
 
   createOtpForm: FormGroup;
   sendingOtp = false;
+  otp = '';
 
   constructor(private service: PasswordResetService) {
     this.createOtpForm = new FormGroup({
@@ -90,6 +91,18 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   enableOtpForm() {
     this.createOtpForm.enable();
+  }
+
+  updateOtp(event: string) {
+    this.otp = event;
+  }
+
+  resetPassword() {
+    this.service.resetPassword({
+      username: this.createOtpForm.value.username,
+      otp: this.otp,
+      newPassword: 'N3wP@ssword123'
+    });
   }
 
 }

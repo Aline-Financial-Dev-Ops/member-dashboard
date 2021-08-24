@@ -27,7 +27,7 @@ export class SingleCharDirective implements OnInit, AfterViewInit {
   inputLength = 0;
 
   @Output()
-  valueChange?: EventEmitter<string>;
+  valueChange = new EventEmitter<string>();
   valueArray: string[];
   valueAccessor: ControlValueAccessor | null;
 

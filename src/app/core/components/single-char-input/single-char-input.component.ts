@@ -10,7 +10,7 @@ import {SingleCharValue} from '@core/models/single-char-value.model';
            (ngModelChange)="onValueChange()"
            (keyup)="onKeyup($event)"
            inputmode="numeric"
-           class="single-char-input"
+           class="single-char-input fw-bold text-primary"
            maxlength="1"/>
   `,
   styleUrls: ['single-char-input.component.sass']
