@@ -5,6 +5,7 @@ import {ResetPasswordAuthentication} from '@core/models/reset-password-authentic
 import {Observable} from 'rxjs';
 import {ResetPasswordRequest} from '@core/models/reset-password-request.model';
 import {CoreModule} from '@core/core.module';
+import {OtpAuthentication} from '@core/models/otp-authentication.model';
 
 @Injectable({
   providedIn: CoreModule
@@ -22,6 +23,17 @@ export class PasswordResetService extends BaseHttpService {
    */
   authenticatePasswordReset(authentication: ResetPasswordAuthentication): Observable<HttpResponse<any>> {
     return this.http.post(this.getApi('/users/password-reset-otp'), authentication, {
+      observe: 'response'
+    });
+  }
+
+  /**
+   * This function verifies the one-time passcode and makes sure that the
+   * user received it.
+   * @param authentication The object that contains the username and OTP.
+   */
+  verifyOtp(authentication: OtpAuthentication): Observable<HttpResponse<any>> {
+    return this.http.post(this.getApi('/users/otp-authentication'), authentication, {
       observe: 'response'
     });
   }
