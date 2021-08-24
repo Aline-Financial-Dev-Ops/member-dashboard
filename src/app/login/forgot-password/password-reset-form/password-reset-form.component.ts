@@ -5,6 +5,8 @@ import {ResetPasswordAuthentication} from '@core/models/reset-password-authentic
 import {ValidatorFunctions} from '@core/validators/validator-functions';
 import {OtpAuthentication} from '@core/models/otp-authentication.model';
 import {ResetPasswordRequest} from '@core/models/reset-password-request.model';
+import {Observable, timer} from 'rxjs';
+import {map, take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -30,7 +32,7 @@ export class PasswordResetFormComponent implements AfterViewInit {
 
   templates!: TemplateRef<any>[];
 
-  currentTemplate = 0;
+  currentTemplate = 1;
 
   createOtpForm: FormGroup;
   resetPasswordForm: FormGroup;
@@ -167,6 +169,24 @@ export class PasswordResetFormComponent implements AfterViewInit {
           this.resetPasswordError = err;
           this.resettingPassword = false;
         });
+  }
+
+  resendingCode = false;
+  coolDownTime = 30;
+  resendCodeBtnText = 'Resend Code';
+
+  resendCode() {
+    this.resendingCode = true;
+    this.coolDownTime = 30;
+    timer(0, 1000)
+      .pipe(take(this.coolDownTime))
+      .pipe(map(i => this.coolDownTime - i))
+      .pipe()
+      .subscribe(next => {
+        const ellipsesLen = (next % 3) + 1;
+        const ellipses = new Array(ellipsesLen + 1).join('.');
+        this.resendCodeBtnText = `Wait ${next}s${ellipses}`;
+      });
   }
 
 }

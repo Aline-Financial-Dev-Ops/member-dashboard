@@ -9,6 +9,7 @@ import {SingleCharValue} from '@core/models/single-char-value.model';
            [(ngModel)]="valueArray[valueIndex]"
            (ngModelChange)="onValueChange()"
            (keyup)="onKeyup($event)"
+           (keydown)="onKeydown($event)"
            inputmode="numeric"
            class="single-char-input fw-bold text-primary"
            maxlength="1"/>
@@ -25,6 +26,9 @@ export class SingleCharInputComponent {
 
   @Output()
   keyupEvent!: EventEmitter<{event: any, valueEvent: SingleCharValue}>;
+
+  @Output()
+  keydownEvent!: EventEmitter<{event: any, valueEvent: SingleCharValue}>;
 
   @Input()
   valueArray!: string[];
@@ -53,8 +57,24 @@ export class SingleCharInputComponent {
       }});
   }
 
+  onKeydown(event: any) {
+    this.keydownEvent.emit({event, valueEvent: {
+        value: this.valueArray[this.valueIndex],
+        array: this.valueArray,
+        index: this.valueIndex
+      }});
+  }
+
   setFocus() {
     this.inputEl.nativeElement.focus();
+  }
+
+  disable() {
+    this.inputEl.nativeElement.disable();
+  }
+
+  enable() {
+    this.inputEl.nativeElement.enable();
   }
 
 }
