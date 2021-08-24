@@ -102,15 +102,8 @@ export class PasswordResetFormComponent implements AfterViewInit {
   }
 
   nextTemplate() {
-    if (this.currentTemplate < this.templates.length) {
+    if (this.currentTemplate < this.templates.length - 1) {
       this.currentTemplate++;
-      this.setCurrentTemplate();
-    }
-  }
-
-  prevTemplate() {
-    if (this.currentTemplate > 0) {
-      this.currentTemplate--;
       this.setCurrentTemplate();
     }
   }
