@@ -13,6 +13,8 @@ import {UserResponse} from '@core/models/user-response.model';
 })
 export class AuthService extends BaseHttpService {
 
+  currentUser?: Observable<UserResponse>;
+
   constructor(private client: HttpClient, private jwtService: JwtService) {
     super();
   }
@@ -31,6 +33,13 @@ export class AuthService extends BaseHttpService {
 
   logout(): void {
     this.jwtService.deleteJwt();
+  }
+
+  getCurrentUser(): Observable<UserResponse> {
+    if (this.currentUser) {
+      return this.currentUser;
+    }
+    return this.client.get<UserResponse>(this.getApi('/users/current'));
   }
 
 }
