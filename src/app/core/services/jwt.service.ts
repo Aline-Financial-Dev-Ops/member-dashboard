@@ -44,6 +44,10 @@ export class JwtService {
     return new Date(this.parseJwt()?.exp! * 1000);
   }
 
+  isValid(): boolean {
+    return this.getExpirationDate().getDate() <= Date.now().valueOf();
+  }
+
 }
 
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BaseHttpService} from '@core/services/base-http.service';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Credentials} from '@core/models/credentials.model';
 import {Observable, throwError} from 'rxjs';
 import {CoreModule} from '@core/core.module';
@@ -19,7 +19,9 @@ export class AuthService extends BaseHttpService {
     super();
   }
 
-  login(credentials: Credentials, unauthorizedHandler?: (err: HttpErrorResponse) => Observable<never>): void {
+  login(credentials: Credentials,
+        successHandler?: (response: HttpResponse<any>) => void,
+        unauthorizedHandler?: (err: HttpErrorResponse) => Observable<never>): void {
     this.client.post(this.getApi('/login'), credentials, {
       observe: 'response'
     }).pipe(catchError(err => unauthorizedHandler ? unauthorizedHandler(err) : throwError(err)))
@@ -27,12 +29,23 @@ export class AuthService extends BaseHttpService {
       res => {
         const token = res.headers.get('Authorization');
         this.jwtService.saveJwt(token!);
+        if (successHandler) successHandler(res);
       }
     );
   }
 
   logout(): void {
     this.jwtService.deleteJwt();
+    if (this.currentUser) {
+      this.currentUser = undefined;
+    }
+  }
+
+  isLoggedIn(): boolean {
+    if (this.jwtService.getJwt()) {
+      return this.jwtService.isValid();
+    }
+    return false;
   }
 
   getCurrentUser(): Observable<UserResponse> {
