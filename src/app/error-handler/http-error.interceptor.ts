@@ -3,9 +3,16 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, throwError} from 'rxjs';
 import {GlobalModalService} from '@app/global-modal/global-modal.service';
 import {catchError} from 'rxjs/operators';
+import {environment} from '@environments/environment';
+
+const ignoreRequestApiEndpoints: string[] = [
+  '/users/password-reset-otp'
+];
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+
+  api = environment.application.api;
 
   constructor(
     private modal: GlobalModalService
@@ -19,14 +26,20 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         message: 'We didn\'t receive a response. You may have lost your connection.'
       });
     } else {
-      console.error(`Something went wrong. ${error.error}.`);
+      console.error(`Something went wrong. ${error.error}`);
     }
 
     return throwError(error.error);
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request)
-      .pipe(catchError(err => this.handleError(err)));
+    if (!ignoreRequestApiEndpoints.includes(this.getEndpoint(request.url))) {
+      return next.handle(request).pipe(catchError(err => this.handleError(err)));
+    }
+    return next.handle(request);
+  }
+
+  getEndpoint(url: string): string {
+    return url.replace(this.api, '');
   }
 }
