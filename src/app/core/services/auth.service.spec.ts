@@ -30,7 +30,7 @@ describe('AuthService', () => {
       password: 'P@ssword123'
     };
 
-    service.login(cred).subscribe();
+    service.login(cred);
 
     let req = httpMock.expectOne(`${api}/login`);
 
