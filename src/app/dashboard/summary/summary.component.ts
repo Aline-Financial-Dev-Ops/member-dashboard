@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from '@core/services/auth.service';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.sass']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  onClick() {
+    this.authService.getCurrentUser()
+      .subscribe(u => console.log(u));
   }
 
 }
