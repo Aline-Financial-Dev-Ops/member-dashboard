@@ -22,7 +22,9 @@ export class AuthService extends BaseHttpService {
   constructor(private client: HttpClient, private jwtService: JwtService) {
     super();
     this.currentUserSubject = new BehaviorSubject<UserResponse | null>(null);
-    this.getCurrentUser();
+    if (this.isLoggedIn) {
+      this.getCurrentUser();
+    }
   }
 
   /**
@@ -63,7 +65,7 @@ export class AuthService extends BaseHttpService {
     return false;
   }
 
-  private getCurrentUser(): void {
+  getCurrentUser(): void {
     this.client.get<UserResponse>(this.getApi('/users/current'))
       .subscribe(user => this.currentUserSubject.next(user));
   }
