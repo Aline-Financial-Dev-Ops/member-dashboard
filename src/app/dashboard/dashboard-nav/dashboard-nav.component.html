@@ -4,8 +4,7 @@
       <div>
         <img src="assets/images/logo.svg" alt="Aline Financial" class="img-fluid" style="width: 45px"/>
       </div>
-      <div class="d-flex align-items-center">
-        Aline <span class="text-primary ms-2">Financial</span>
+      <div class="text-light">
       </div>
       <div class="d-flex align-items-center">
         <button class="btn btn-dark">
@@ -15,9 +14,26 @@
     </div>
   </div>
 
-  <div class="pt-3 pb-5 bg-dark text-light position-fixed bottom-0 start-0 fs-4 shadow-sm w-100">
+  <div class="bg-dark text-light position-fixed bottom-0 start-0 shadow-sm w-100">
     <div class="d-flex justify-content-around">
-      Summary Accounts Offers
+      <app-tab-nav [tabs]="tabs"></app-tab-nav>
+    </div>
+  </div>
+</div>
+
+<div class="navbar navbar-dark bg-dark position-fixed top-0 start-0 w-100 d-md-block d-none">
+  <div class="container">
+    <a class="navbar-brand d-flex justify-content-start align-items-center">
+      <span class="text-primary">Aline</span>
+      <img src="assets/images/logo.svg" style="height: 32px" alt="$"/>
+      Financial
+    </a>
+    <div class="d-flex justify-content-end">
+      <ul class="nav">
+        <li class="nav-item" *ngFor="let tab of tabs">
+          <a class="nav-link text-light" [routerLink]="tab.route">{{tab.label}}</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

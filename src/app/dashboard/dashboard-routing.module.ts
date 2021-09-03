@@ -5,6 +5,7 @@ import {AccountsDashboardComponent} from '@dashboard/accounts-dashboard/accounts
 import {DashboardComponent} from '@dashboard/dashboard.component';
 import {SummaryComponent} from '@dashboard/summary/summary.component';
 import {AuthGuard} from '@core/guards/auth.guard';
+import {NotFoundComponent} from '@app/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -15,15 +16,26 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: SummaryComponent
+        component: SummaryComponent,
+        data: {
+          title: 'Summary'
+        }
       },
       {
         path: 'accounts',
-        component: AccountsDashboardComponent
+        component: AccountsDashboardComponent,
+        data: {
+          title: 'Accounts'
+        }
       },
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: '**',
+        pathMatch: 'full',
+        component: NotFoundComponent
       }
     ]
   }

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Tab} from '@dashboard/dashboard-nav/tab-nav/tab-nav.component';
 
 @Component({
   selector: 'app-dashboard-nav',
@@ -7,6 +8,26 @@ import {Component} from '@angular/core';
 })
 export class DashboardNavComponent {
 
-  constructor() { }
+  tabs: Tab[]
+
+  constructor() {
+    this.tabs = [
+      {
+        icon: 'chart-bar',
+        label: 'Summary',
+        route: './'
+      },
+      {
+        icon: 'wallet',
+        label: 'Accounts',
+        route: './accounts'
+      },
+      {
+        icon: 'tags',
+        label: 'Offers',
+        route: './offers'
+      }
+    ];
+  }
 
 }

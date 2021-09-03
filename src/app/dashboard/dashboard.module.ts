@@ -5,9 +5,11 @@ import {SettingsComponent} from './settings/settings.component';
 import {CommonModule} from '@angular/common';
 import {DashboardRoutingModule} from '@dashboard/dashboard-routing.module';
 import {AccountsDashboardComponent} from './accounts-dashboard/accounts-dashboard.component';
-import { SummaryComponent } from './summary/summary.component';
+import {SummaryComponent} from './summary/summary.component';
 import {LogoModule} from '@app/logo/logo.module';
 import {AppIconsModule} from '@app/app-icons.module';
+import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
+import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {AppIconsModule} from '@app/app-icons.module';
     DashboardNavComponent,
     SettingsComponent,
     AccountsDashboardComponent,
-    SummaryComponent
+    SummaryComponent,
+    TabNavComponent,
+    NavTabComponent
   ],
   imports: [
     CommonModule,

@@ -8,7 +8,8 @@ import {AuthService} from '@core/services/auth.service';
 })
 export class SummaryComponent {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   onClick() {
     this.authService.getCurrentUser()
