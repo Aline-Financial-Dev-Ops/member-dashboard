@@ -12,8 +12,10 @@ export class SummaryComponent {
   }
 
   onClick() {
-    this.authService.getCurrentUser()
-      .subscribe(u => console.log(u));
+    console.log(this.authService.isLoggedIn);
+    this.authService.currentUser.subscribe(
+      next => console.log(next)
+    );
   }
 
 }

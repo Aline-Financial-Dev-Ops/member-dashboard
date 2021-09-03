@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {BaseHttpService} from '@core/services/base-http.service';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Credentials} from '@core/models/credentials.model';
-import {Observable, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
 import {CoreModule} from '@core/core.module';
 import {catchError} from 'rxjs/operators';
 import {JwtService} from '@core/services/jwt.service';
@@ -13,10 +13,12 @@ import {UserResponse} from '@core/models/user-response.model';
 })
 export class AuthService extends BaseHttpService {
 
-  currentUser?: Observable<UserResponse>;
+  private currentUserSubject: BehaviorSubject<UserResponse | null>;
 
   constructor(private client: HttpClient, private jwtService: JwtService) {
     super();
+    this.currentUserSubject = new BehaviorSubject<UserResponse | null>(null);
+    this.getCurrentUser();
   }
 
   login(credentials: Credentials,
@@ -29,30 +31,31 @@ export class AuthService extends BaseHttpService {
       res => {
         const token = res.headers.get('Authorization');
         this.jwtService.saveJwt(token!);
-        if (successHandler) successHandler(res);
+        this.getCurrentUser();
+        if (successHandler) successHandler.call(null, res);
       }
     );
   }
 
   logout(): void {
     this.jwtService.deleteJwt();
-    if (this.currentUser) {
-      this.currentUser = undefined;
-    }
+    this.currentUserSubject.next(null);
   }
 
-  isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     if (this.jwtService.getJwt()) {
       return this.jwtService.isValid();
     }
     return false;
   }
 
-  getCurrentUser(): Observable<UserResponse> {
-    if (this.currentUser) {
-      return this.currentUser;
-    }
-    return this.client.get<UserResponse>(this.getApi('/users/current'));
+  private getCurrentUser(): void {
+    this.client.get<UserResponse>(this.getApi('/users/current'))
+      .subscribe(user => this.currentUserSubject.next(user));
+  }
+
+  get currentUser(): Observable<UserResponse | null> {
+    return this.currentUserSubject.asObservable();
   }
 
 }
