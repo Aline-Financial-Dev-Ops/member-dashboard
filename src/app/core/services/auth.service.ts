@@ -2,12 +2,16 @@ import {Injectable} from '@angular/core';
 import {BaseHttpService} from '@core/services/base-http.service';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Credentials} from '@core/models/credentials.model';
-import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {CoreModule} from '@core/core.module';
 import {catchError} from 'rxjs/operators';
 import {JwtService} from '@core/services/jwt.service';
 import {UserResponse} from '@core/models/user-response.model';
 
+/**
+ * Injectable authentication service that allows access to
+ * the current logged in user.
+ */
 @Injectable({
   providedIn: CoreModule
 })
@@ -21,6 +25,12 @@ export class AuthService extends BaseHttpService {
     this.getCurrentUser();
   }
 
+  /**
+   * Log in with your credentials and store a JWT in the client's local storage.
+   * @param credentials           Username and password model.
+   * @param successHandler        Log in success callback.
+   * @param unauthorizedHandler   Unauthorized login callback. (Display error message)
+   */
   login(credentials: Credentials,
         successHandler?: (response: HttpResponse<any>) => void,
         unauthorizedHandler?: (err: HttpErrorResponse) => Observable<never>): void {
@@ -42,6 +52,10 @@ export class AuthService extends BaseHttpService {
     this.currentUserSubject.next(null);
   }
 
+  /**
+   * Returns a boolean if the user is logged in.
+   * (This boolean is based on if the client has a valid JWT in its local storage.)
+   */
   get isLoggedIn(): boolean {
     if (this.jwtService.getJwt()) {
       return this.jwtService.isValid();
@@ -54,6 +68,10 @@ export class AuthService extends BaseHttpService {
       .subscribe(user => this.currentUserSubject.next(user));
   }
 
+  /**
+   * Get the current logged in user.
+   * It will return null if no user is logged in.
+   */
   get currentUser(): Observable<UserResponse | null> {
     return this.currentUserSubject.asObservable();
   }
