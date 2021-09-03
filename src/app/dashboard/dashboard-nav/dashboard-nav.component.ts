@@ -15,7 +15,7 @@ export class DashboardNavComponent {
       {
         icon: 'chart-bar',
         label: 'Summary',
-        route: './'
+        route: './summary'
       },
       {
         icon: 'wallet',

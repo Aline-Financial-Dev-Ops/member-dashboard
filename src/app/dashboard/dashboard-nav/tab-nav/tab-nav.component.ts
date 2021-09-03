@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
-
 /**
  * Tab type to construct a NavTabComponent.
  */
@@ -21,5 +20,7 @@ export class TabNavComponent {
   tabs!: Tab[];
 
   constructor() { }
+
+
 
 }

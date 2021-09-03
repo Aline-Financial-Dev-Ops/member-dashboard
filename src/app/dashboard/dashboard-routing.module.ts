@@ -14,8 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        pathMatch: 'full',
+        path: 'summary',
         component: SummaryComponent,
         data: {
           title: 'Summary'

@@ -1,0 +1,16 @@
+@import "~src/styles"
+
+.nav-tab
+  display: block
+  padding: $spacer
+  text-decoration: none
+  min-width: 90px
+  color: $light
+  transition: color 0.3s ease, background-color 0.3s ease
+  &:focus
+    color: $primary
+
+.active
+  color: $primary
+  background: darken($dark, 1.2)
+  border-bottom: 3px solid $primary
