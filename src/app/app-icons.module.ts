@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
-  faAngleRight, faBars, faChartBar, faCheckCircle,
+  faAngleRight, faArrowRight, faBars, faChartBar, faCheckCircle,
   faExclamationCircle,
   faInfoCircle,
   faShieldAlt, faTags, faTimesCircle, faUnlockAlt,
@@ -26,7 +26,8 @@ const icons: IconDefinition[] = [
   faChartBar,
   faWallet,
   faTags,
-  faUserCircle
+  faUserCircle,
+  faArrowRight
 ];
 
 @NgModule({

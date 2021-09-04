@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Tab} from '@dashboard/dashboard-nav/tab-nav/tab-nav.component';
 import {AuthService} from '@core/services/auth.service';
 
-type NavRoute = {
+export type NavRoute = {
   route: string;
   label: string;
   isTab: boolean;

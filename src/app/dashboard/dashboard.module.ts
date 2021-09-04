@@ -11,6 +11,7 @@ import {AppIconsModule} from '@app/app-icons.module';
 import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
 import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
+import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {UserAvatarComponent} from './user-avatar/user-avatar.component';
     SummaryComponent,
     TabNavComponent,
     NavTabComponent,
-    UserAvatarComponent
+    UserAvatarComponent,
+    DrawerComponent
   ],
   imports: [
     CommonModule,

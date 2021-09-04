@@ -9,7 +9,10 @@
              style="width: 45px"/>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-dark d-flex justify-content-center align-items-center">
+        <button class="btn btn-dark d-flex justify-content-center align-items-center"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#dashboard-nav-drawer">
           <fa-icon icon="bars" size="2x" transform="shrink-3"></fa-icon>
         </button>
       </div>
@@ -21,6 +24,7 @@
       <app-tab-nav [tabs]="tabs"></app-tab-nav>
     </div>
   </div>
+  <app-drawer [routes]="routes"></app-drawer>
 </div>
 
 <!-- Desktop Navigation -->
