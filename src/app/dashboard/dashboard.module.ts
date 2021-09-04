@@ -10,6 +10,7 @@ import {LogoModule} from '@app/logo/logo.module';
 import {AppIconsModule} from '@app/app-icons.module';
 import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
 import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
+import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.componen
     AccountsDashboardComponent,
     SummaryComponent,
     TabNavComponent,
-    NavTabComponent
+    NavTabComponent,
+    UserAvatarComponent
   ],
   imports: [
     CommonModule,
