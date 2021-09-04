@@ -9,31 +9,31 @@
              style="width: 45px"/>
       </div>
       <div class="d-flex align-items-center">
-        <button class="btn btn-dark d-inline-flex justify-content-center align-items-center">
+        <button class="btn btn-dark d-flex justify-content-center align-items-center">
           <fa-icon icon="bars" size="2x" transform="shrink-3"></fa-icon>
         </button>
       </div>
     </div>
   </div>
 
-  <div class="bg-dark text-light position-fixed bottom-0 start-0 shadow-sm w-100">
-    <div class="d-flex justify-content-evenly">
+  <div class="bg-dark text-light position-fixed bottom-0 start-0 w-100">
+    <div class="d-flex justify-content-center">
       <app-tab-nav [tabs]="tabs"></app-tab-nav>
     </div>
   </div>
 </div>
 
 <!-- Desktop Navigation -->
-<div class="navbar navbar-dark bg-dark position-fixed top-0 start-0 w-100 d-md-block d-none">
+<div class="navbar navbar-dark bg-dark position-fixed top-0 start-0 w-100 d-md-block d-none p-0">
   <div class="container">
     <a class="navbar-brand d-flex justify-content-start align-items-center">
       <span class="text-primary">Aline</span>
       <img src="assets/images/logo.svg" style="height: 32px" alt="$"/>
       Financial
     </a>
-    <ul class="nav">
+    <ul class="nav h-100">
       <li class="nav-item" *ngFor="let tab of tabs">
-        <a class="nav-link" [routerLink]="tab.route" [routerLinkActive]="['active']">{{tab.label}}</a>
+        <a class="nav-link p-3" [routerLink]="tab.route" [routerLinkActive]="['nav-active']">{{tab.label}}</a>
       </li>
     </ul>
   </div>

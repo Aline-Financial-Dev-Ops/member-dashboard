@@ -14,6 +14,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'summary'
+      },
+      {
         path: 'summary',
         component: SummaryComponent,
         data: {
