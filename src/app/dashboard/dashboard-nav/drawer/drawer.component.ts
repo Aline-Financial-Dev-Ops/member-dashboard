@@ -15,6 +15,7 @@ export class DrawerComponent implements OnInit {
 
   fullName?: string;
   username?: string;
+  membershipId?: string;
 
   constructor(private service: AuthService, private router: Router) { }
 
@@ -23,6 +24,7 @@ export class DrawerComponent implements OnInit {
       if (user) {
         this.fullName = `${user.firstName} ${user.lastName}`;
         this.username = user.username;
+        this.membershipId = user.membershipId;
       }
     });
   }

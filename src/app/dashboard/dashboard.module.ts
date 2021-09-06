@@ -12,6 +12,7 @@ import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
 import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
+import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
     CommonModule,
     DashboardRoutingModule,
     LogoModule,
-    AppIconsModule
+    AppIconsModule,
+    NgbTooltipModule
   ]
 })
 export class DashboardModule { }

@@ -50,9 +50,9 @@
           </a>
           <div class="dropdown-menu dropdown-menu-dark shadow dropdown-menu-end animate__animated animate__zoomIn animate__supersonic_speed">
             <div class="dropdown-header text-light">
-              <div *ngIf="fullName && username">
+              <div *ngIf="fullName && membershipId">
                 {{this.fullName}}
-                <div class="text-muted">{{this.username}}</div>
+                <div class="text-muted fw-bold" style="letter-spacing: 0.07rem" ngbTooltip="Membership ID" placement="start"><fa-icon icon="id-card"></fa-icon> #{{this.membershipId}}</div>
               </div>
             </div>
             <div class="dropdown-divider"></div>
