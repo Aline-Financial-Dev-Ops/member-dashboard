@@ -7,11 +7,13 @@
       </button>
     </div>
     <div class="w-100 d-flex flex-column justify-content-center align-items-center">
-      <fa-icon icon="user-circle" size="6x" class="user-avatar text-light"></fa-icon>
+      <fa-layers size="6x">
+        <fa-icon icon="circle" class="text-dark" transform="shrink-2"></fa-icon>
+        <fa-icon icon="user-circle" class="user-avatar text-light"></fa-icon>
+      </fa-layers>
       <div class="text-center my-3 mb-2">
         <div class="fs-3 fw-bold font-montserrat text-dark">{{fullName}}</div>
-        <div class="fs-5 text-black-50">{{username}}</div>
-        <div class="small">Membership ID: <span class="fw-bold">{{membershipId}}</span></div>
+        <div class="fs-5"><fa-icon icon="id-card"></fa-icon> <span class="text-black-50">{{membershipId}}</span></div>
       </div>
       <div class="my-2">
         <button type="button"
