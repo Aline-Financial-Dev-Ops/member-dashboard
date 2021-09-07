@@ -4,6 +4,7 @@ import {AccountService} from './account.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {environment} from '@environments/environment';
 
+
 describe('AccountService', () => {
   let service: AccountService;
   let httpMock: HttpTestingController;
@@ -27,10 +28,8 @@ describe('AccountService', () => {
   });
 
   it ('should call the get accounts by member ID api endpoint when getAccounts function is called', () => {
-    const memberId = 1;
-    service.getAccounts(memberId).subscribe();
-    httpMock.expectOne(`${api}/members/${memberId}/accounts`);
+    service.getAccounts(1).subscribe();
+    const req = httpMock.expectOne(`${api}/members/1/accounts`);
+    expect(req.request.url).toBe(`${api}/members/1/accounts`);
   });
-
-  it ('should return a paginated response when getAccounts is called', () => {});
 });

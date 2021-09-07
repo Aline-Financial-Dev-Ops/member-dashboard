@@ -13,15 +13,15 @@
       </fa-layers>
       <div class="text-center my-3 mb-2 text-light">
         <div class="fs-3 fw-bold font-montserrat">{{fullName}}</div>
-        <div class="fs-5 font-noto-sans">{{username}}</div>
+        <div class="small font-noto-sans">{{username}}</div>
         <div class="small text-muted-light">
-          <fa-icon icon="id-card" class="me-1"></fa-icon> <span style="letter-spacing: .15rem">{{membershipId}}</span>
+          <fa-icon icon="id-card" class="me-1"></fa-icon> {{membershipId}}
         </div>
       </div>
       <div class="my-2">
         <button type="button"
                 data-bs-dismiss="offcanvas"
-                class="btn btn-sm btn-primary rounded-pill"
+                class="btn btn-sm btn-link rounded-pill text-muted-light-2"
                 routerLink="./profile">
           Edit Profile
         </button>
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="d-flex text-end justify-content-end w-100 m-0">
+  <div class="d-flex text-end justify-content-end w-100 m-0 pe-2 overflow-scroll">
     <ul class="list-unstyled w-100">
       <li *ngFor="let route of routes" class="w-100 drawer-item">
         <button class="btn btn-link link-light font-noto-sans text-end text-decoration-none d-inline-block w-100 py-3 shadow-none fs-5"
@@ -41,7 +41,7 @@
     </ul>
   </div>
 
-  <div class="p-3 text-end position-absolute bottom-0 w-100">
+  <div class="drawer-footer">
     <button type="button"
             (click)="logout()"
             class="btn btn-lg btn-outline-primary rounded-pill w-100">
