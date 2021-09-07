@@ -19,6 +19,7 @@ export class DashboardNavComponent implements OnInit {
   routes: NavRoute[];
   fullName?: string;
   membershipId?: string;
+  username?: string;
 
   constructor(private authService: AuthService) {
     this.tabs = [
@@ -77,6 +78,7 @@ export class DashboardNavComponent implements OnInit {
     this.authService.currentUser.subscribe(user => {
       if (user != null) {
         this.fullName = `${user!.firstName} ${user!.lastName}`;
+        this.username = user!.username;
         this.membershipId = user!.membershipId;
       }
     });

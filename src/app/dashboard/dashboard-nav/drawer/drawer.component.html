@@ -11,9 +11,12 @@
         <fa-icon icon="circle" class="text-dark" transform="shrink-2"></fa-icon>
         <fa-icon icon="user-circle" class="user-avatar text-light"></fa-icon>
       </fa-layers>
-      <div class="text-center my-3 mb-2">
-        <div class="fs-3 fw-bold font-montserrat text-dark">{{fullName}}</div>
-        <div class="fs-5"><fa-icon icon="id-card"></fa-icon> <span class="text-black-50">{{membershipId}}</span></div>
+      <div class="text-center my-3 mb-2 text-light">
+        <div class="fs-3 fw-bold font-montserrat">{{fullName}}</div>
+        <div class="fs-5 font-noto-sans">{{username}}</div>
+        <div class="small text-muted-light">
+          <fa-icon icon="id-card" class="me-1"></fa-icon> <span style="letter-spacing: .15rem">{{membershipId}}</span>
+        </div>
       </div>
       <div class="my-2">
         <button type="button"

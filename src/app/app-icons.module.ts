@@ -5,7 +5,7 @@ import {
   faAngleRight, faArrowRight, faBars, faChartBar, faCheckCircle, faCircle,
   faExclamationCircle, faIdCard,
   faInfoCircle,
-  faShieldAlt, faTags, faTimesCircle, faUnlockAlt,
+  faShieldAlt, faTags, faTimesCircle, faUnlockAlt, faUser,
   faUserCheck, faUserCircle,
   faUserPlus, faWallet
 } from '@fortawesome/free-solid-svg-icons';
@@ -29,7 +29,8 @@ const icons: IconDefinition[] = [
   faUserCircle,
   faArrowRight,
   faIdCard,
-  faCircle
+  faCircle,
+  faUser
 ];
 
 @NgModule({

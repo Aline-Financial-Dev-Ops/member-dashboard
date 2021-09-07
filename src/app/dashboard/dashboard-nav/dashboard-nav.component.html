@@ -52,7 +52,16 @@
             <div class="dropdown-header text-light">
               <div *ngIf="fullName && membershipId">
                 {{this.fullName}}
-                <div class="text-muted fw-bold" style="letter-spacing: 0.07rem" ngbTooltip="Membership ID" placement="start"><fa-icon icon="id-card"></fa-icon> #{{this.membershipId}}</div>
+                <div class="text-muted">
+                  <div class="fw-bold" ngbTooltip="Username" placement="start">
+                    <fa-icon icon="user" class="me-1"></fa-icon>
+                    {{this.username}}
+                  </div>
+                  <div ngbTooltip="Membership ID" placement="start">
+                    <fa-icon icon="id-card" class="me-1"></fa-icon>
+                    {{this.membershipId}}
+                  </div>
+                </div>
               </div>
             </div>
             <div class="dropdown-divider"></div>
