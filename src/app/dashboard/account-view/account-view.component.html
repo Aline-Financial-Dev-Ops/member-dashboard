@@ -15,7 +15,32 @@
   </div>
 </div>
 
-<div *ngIf="viewType==='list'" class="container shadow-sm rounded-3 bg-white d-flex justify-content-between align-items-center p-3 my-2">
-  <div class="font-noto-sans">{{account | accountLabel}}</div>
-  <div class="font-montserrat">{{account.balance / 100 | currency}}</div>
+<div *ngIf="viewType==='list'" class="container shadow-sm rounded-3 bg-white d-flex p-3 my-2 dropdown">
+  <div class="d-flex justify-content-between align-items-center flex-column fw-bold flex-grow-1 me-2">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="font-noto-sans">{{account | accountLabel}}</div>
+      <div class="font-montserrat">{{account.balance / 100 | currency}}</div>
+    </div>
+    <div class="font-noto-sans w-100 text-end small text-muted fw-normal">
+      <span *ngIf="account.availableBalance">Available Balance: {{account.availableBalance / 100 | currency}}</span>
+      <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent}}</span>
+    </div>
+  </div>
+  <div class="text-end">
+    <a class="btn px-2" data-bs-toggle="dropdown" href="#" role="button" [id]="'dropdownBtn' + account.id" aria-expanded="false">
+      <fa-icon icon="ellipsis-v" transform="grow-5"></fa-icon>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark" [attr.aria-labelledby]="'dropdownBtn' + account.id">
+      <li>
+        <button class="dropdown-item">
+          Set Nickname
+        </button>
+      </li>
+      <li>
+        <button class="dropdown-item">
+          View Account
+        </button>
+      </li>
+    </ul>
+  </div>
 </div>
