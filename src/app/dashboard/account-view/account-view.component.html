@@ -12,7 +12,7 @@
     <div class="font-noto-sans fw-bold">{{account | accountLabel}}</div>
     <div class="font-montserrat">{{account.balance / 100 | currency}}</div>
     <div class="d-flex justify-content-center align-items-center">
-      <fa-icon icon="angle-right"></fa-icon>
+      <fa-icon icon="angle-right" class="action-icon"></fa-icon>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
     </div>
     <div class="mx-1">
       <a class="btn px-2" data-bs-toggle="dropdown" href="#" role="button" [id]="'dropdownBtn' + account.id" aria-expanded="false">
-        <fa-icon icon="ellipsis-v" transform="grow-5"></fa-icon>
+        <fa-icon icon="ellipsis-v" transform="grow-5" class="action-icon"></fa-icon>
       </a>
       <ul class="dropdown-menu shadow-sm" [attr.aria-labelledby]="'dropdownBtn' + account.id">
         <li>
