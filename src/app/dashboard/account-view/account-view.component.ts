@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {AccountResponse} from '@core/models/account-response.model';
 
 export type AccountViewType = 'full' | 'preview' | 'list';
 
@@ -11,6 +12,9 @@ export class AccountViewComponent {
 
   @Input()
   viewType: AccountViewType = 'full';
+
+  @Input()
+  account!: AccountResponse;
 
   constructor() { }
 

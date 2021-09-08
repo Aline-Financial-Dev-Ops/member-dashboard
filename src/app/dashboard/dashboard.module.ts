@@ -14,6 +14,7 @@ import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
 import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import { AccountViewComponent } from './account-view/account-view.component';
+import { AccountLabelPipe } from './pipes/account-label.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AccountViewComponent } from './account-view/account-view.component';
     NavTabComponent,
     UserAvatarComponent,
     DrawerComponent,
-    AccountViewComponent
+    AccountViewComponent,
+    AccountLabelPipe
   ],
   imports: [
     CommonModule,

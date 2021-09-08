@@ -1,5 +1,13 @@
-<div *ngIf="viewType==='full'" class="container shadow-sm rounded-3 bg-white d-flex justify-content-center align-items-center flex-column p-3">
-  <div class="fw-bold">Checking Account ***01234</div>
-  <div class="fw-bold fs-1 my-3">$523.64</div>
-  <div class="small text-muted">Available Balance: $523.55</div>
+<div *ngIf="viewType==='full'" class="container shadow-sm rounded-3 bg-white d-flex justify-content-center align-items-center flex-column p-3 my-2">
+  <div class="fw-bold">{{account | accountLabel}}</div>
+  <div class="fw-bold fs-1 my-3">{{account.balance / 100 | currency}}</div>
+  <div class="small text-muted">
+    <span *ngIf="account.availableBalance">Available Balance: {{account.availableBalance}}</span>
+    <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent}}</span>
+  </div>
+</div>
+
+<div *ngIf="viewType==='preview'" class="container shadow-sm rounded-3 bg-white d-flex justify-content-around align-items-center p-3 my-2">
+  <div>{{account | accountLabel}}</div>
+  <div>{{account.balance / 100 | currency}}</div>
 </div>
