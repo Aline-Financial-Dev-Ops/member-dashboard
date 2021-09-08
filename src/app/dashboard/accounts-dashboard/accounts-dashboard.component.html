@@ -5,6 +5,9 @@
   <ng-container *ngIf="accounts else loading">
     <app-account-view *ngFor="let account of accounts" viewType="preview" [account]="account"></app-account-view>
   </ng-container>
+  <ng-container *ngIf="accounts else loading">
+    <app-account-view *ngFor="let account of accounts" viewType="list" [account]="account"></app-account-view>
+  </ng-container>
 </div>
 
 <ng-template #loading>
