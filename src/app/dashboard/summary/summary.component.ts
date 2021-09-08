@@ -1,18 +1,32 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '@core/services/auth.service';
+import {AccountService} from '@core/services/account.service';
+import {AccountResponse} from '@core/models/account-response.model';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.sass']
 })
-export class SummaryComponent {
+export class SummaryComponent implements OnInit {
 
-  constructor(private authService: AuthService) {
+  accounts?: AccountResponse[];
+
+  constructor(private authService: AuthService,
+              private accountService: AccountService) {
   }
 
-  async onClick() {
-    this.authService.currentUser.subscribe(user => console.log(user));
+  ngOnInit(): void {
+    this.authService.currentUser.subscribe(
+      user => {
+        if (user) {
+          this.accountService.getAccounts(user.memberId)
+            .pipe(map(accounts => accounts.content))
+            .subscribe(accounts => this.accounts = accounts);
+        }
+      }
+    );
   }
 
 }

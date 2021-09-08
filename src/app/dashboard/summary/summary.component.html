@@ -1,4 +1,13 @@
 <div class="container">
-  <p>summary works!</p>
-  <button (click)="onClick()">Click Me</button>
+  <div class="card shadow-sm">
+    <div class="card-header">
+      Accounts
+    </div>
+    <div class="card-body bg-light">
+      <app-account-view *ngFor="let account of accounts"
+                        [account]="account"
+                        viewType="preview">
+      </app-account-view>
+    </div>
+  </div>
 </div>
