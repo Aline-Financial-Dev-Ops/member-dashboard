@@ -13,6 +13,7 @@ import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.componen
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
 import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { AccountViewComponent } from './account-view/account-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
     TabNavComponent,
     NavTabComponent,
     UserAvatarComponent,
-    DrawerComponent
+    DrawerComponent,
+    AccountViewComponent
   ],
   imports: [
     CommonModule,
