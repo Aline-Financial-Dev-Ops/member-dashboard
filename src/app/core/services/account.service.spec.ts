@@ -32,4 +32,10 @@ describe('AccountService', () => {
     const req = httpMock.expectOne(`${api}/members/1/accounts`);
     expect(req.request.url).toBe(`${api}/members/1/accounts`);
   });
+
+  it ('should call the get account by ID api endpoint when getAccount function is called', () => {
+    service.getAccountById(1).subscribe();
+    const req = httpMock.expectOne(`${api}/accounts/1`);
+    expect(req.request.url).toBe(`${api}/accounts/1`);
+  });
 });

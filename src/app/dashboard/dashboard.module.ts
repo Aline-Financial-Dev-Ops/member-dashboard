@@ -11,10 +11,11 @@ import {AppIconsModule} from '@app/app-icons.module';
 import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
 import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
-import { DrawerComponent } from './dashboard-nav/drawer/drawer.component';
+import {DrawerComponent} from './dashboard-nav/drawer/drawer.component';
 import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
-import { AccountViewComponent } from './account-view/account-view.component';
-import { AccountLabelPipe } from './pipes/account-label.pipe';
+import {AccountViewComponent} from './account-view/account-view.component';
+import {AccountLabelPipe} from './pipes/account-label.pipe';
+import {AccountPageComponent} from './account-page/account-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AccountLabelPipe } from './pipes/account-label.pipe';
     UserAvatarComponent,
     DrawerComponent,
     AccountViewComponent,
-    AccountLabelPipe
+    AccountLabelPipe,
+    AccountPageComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,8 @@ import {DashboardComponent} from '@dashboard/dashboard.component';
 import {SummaryComponent} from '@dashboard/summary/summary.component';
 import {AuthGuard} from '@core/guards/auth.guard';
 import {NotFoundComponent} from '@app/not-found/not-found.component';
+import {AccountPageComponent} from '@dashboard/account-page/account-page.component';
+import {DashboardRoutingService} from '@dashboard/dashboard-routing.service';
 
 const routes: Routes = [
   {
@@ -33,6 +35,10 @@ const routes: Routes = [
         }
       },
       {
+        path: 'accounts/:id',
+        component: AccountPageComponent
+      },
+      {
         path: 'settings',
         component: SettingsComponent
       },
@@ -51,6 +57,9 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    DashboardRoutingService
   ]
 })
 export class DashboardRoutingModule { }

@@ -16,6 +16,9 @@ export class AccountViewComponent {
   @Input()
   account!: AccountResponse;
 
+  @Input()
+  link = false;
+
   constructor() { }
 
 }
