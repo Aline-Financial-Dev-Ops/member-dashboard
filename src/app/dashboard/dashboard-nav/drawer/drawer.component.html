@@ -29,10 +29,10 @@
     </div>
   </div>
 
-  <div class="d-flex text-end justify-content-end w-100 m-0 pe-2 overflow-scroll">
+  <div class="d-flex text-end justify-content-end w-100 m-0 overflow-scroll">
     <ul class="list-unstyled w-100">
-      <li *ngFor="let route of routes" class="w-100 drawer-item">
-        <button class="btn btn-link link-light font-noto-sans text-end text-decoration-none d-inline-block w-100 py-3 shadow-none fs-5"
+      <li *ngFor="let route of routes" class="w-100 drawer-item py-1 px-2">
+        <button class="btn btn-link link-light font-noto-sans text-end text-decoration-none d-inline-block w-100 shadow-none fs-4"
                 data-bs-dismiss="offcanvas"
            [routerLink]="route.route">
           {{route.label}}
