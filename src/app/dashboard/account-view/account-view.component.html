@@ -1,4 +1,4 @@
-<div class="container shadow-sm rounded-3 account-view" [ngSwitch]="viewType" [routerLink]="link ? '/dashboard/accounts/' + account.id : undefined">
+<div class="container shadow-sm rounded-3 account-view" [ngClass]="{'action': link}" [ngSwitch]="viewType" [routerLink]="link ? '/dashboard/accounts/' + account.id : undefined">
   <div *ngSwitchCase="'full'" class="d-flex justify-content-center align-items-center flex-column p-3 my-2">
     <div class="font-noto-sans fw-bold">{{account | accountLabel}}</div>
     <div class="fs-1 my-3 font-montserrat">{{account.balance / 100 | currency}}</div>
