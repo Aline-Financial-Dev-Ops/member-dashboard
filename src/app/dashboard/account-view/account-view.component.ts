@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {AccountResponse} from '@core/models/account-response.model';
+import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
 export type AccountViewType = 'full' | 'preview' | 'list';
 
@@ -19,6 +20,17 @@ export class AccountViewComponent {
   @Input()
   link = false;
 
+  accountNumberVisible = false;
+
+  eyeIcon: IconProp = 'eye';
+
   constructor() { }
+
+  toggleVisible() {
+    this.accountNumberVisible = !this.accountNumberVisible;
+    if (this.accountNumberVisible)
+      this.eyeIcon = 'eye-slash';
+    else this.eyeIcon = 'eye';
+  }
 
 }

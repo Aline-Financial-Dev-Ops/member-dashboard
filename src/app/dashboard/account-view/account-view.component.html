@@ -1,6 +1,13 @@
 <div class="container shadow-sm rounded-3 account-view" [ngClass]="{'action': link}" [ngSwitch]="viewType" [routerLink]="link ? '/dashboard/accounts/' + account.id : undefined">
+
+  <!-- Full Account View -->
   <div *ngSwitchCase="'full'" class="d-flex justify-content-center align-items-center flex-column p-3 my-2">
-    <div class="font-noto-sans fw-bold">{{account | accountLabel}}</div>
+    <div class="font-noto-sans fw-bold d-flex justify-content-center align-items-center">
+      {{account | accountLabel: accountNumberVisible}}
+      <button class="btn shadow-none text-muted" [ngbTooltip]="accountNumberVisible ? 'Hide account number' : 'Show account number'" placement="top">
+        <fa-icon [icon]="eyeIcon" (click)="toggleVisible()"></fa-icon>
+      </button>
+    </div>
     <div class="fs-1 my-3 font-montserrat">{{account.balance / 100 | currency}}</div>
     <div class="small text-muted">
       <span *ngIf="account.availableBalance">Available Balance: {{account.availableBalance / 100 | currency}}</span>
@@ -8,6 +15,7 @@
     </div>
   </div>
 
+  <!-- Preview Account View -->
   <div *ngSwitchCase="'preview'" class="d-flex justify-content-between align-items-center p-3 my-2">
     <div class="font-noto-sans fw-bold">{{account | accountLabel}}</div>
     <div class="font-montserrat">{{account.balance / 100 | currency}}</div>
@@ -16,6 +24,7 @@
     </div>
   </div>
 
+  <!-- List Account View -->
   <div *ngSwitchCase="'list'" class="d-flex p-3 my-2 dropdown">
     <div class="d-flex justify-content-between align-items-center flex-column flex-grow-1 me-2">
       <div class="d-flex justify-content-between align-items-center w-100">

@@ -6,8 +6,10 @@ import {AccountResponse} from '@core/models/account-response.model';
 })
 export class AccountLabelPipe implements PipeTransform {
 
-  transform(account: AccountResponse): string {
-    return `${account.type} ***${account.accountNumber.substr(account.accountNumber.length - 4)}`;
+  transform(account: AccountResponse, visible = false): string {
+    const accountNumber = visible ? account.accountNumber :
+      `***${account.accountNumber.substr(account.accountNumber.length - 4)}`;
+    return `${account.type} ${accountNumber}`;
   }
 
 }
