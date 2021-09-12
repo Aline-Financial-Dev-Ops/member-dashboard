@@ -17,7 +17,7 @@ export const slider =
         })
       ]),
       query(':enter', [
-        animate('0.15s ease'),
+        animate('0.2s ease'),
         style({
           opacity: 1
         })
