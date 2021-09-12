@@ -9,6 +9,7 @@ import {RegistrationModule} from '@registration/registration.module';
 import {CoreModule} from '@core/core.module';
 import {GlobalModalModule} from '@app/global-modal/global-modal.module';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
     NotFoundComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     AppRoutingModule,
     LoginModule,

@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardNavComponent} from './dashboard-nav/dashboard-nav.component';
 import {SettingsComponent} from './settings/settings.component';
-import {CommonModule} from '@angular/common';
 import {DashboardRoutingModule} from '@dashboard/dashboard-routing.module';
 import {AccountsDashboardComponent} from './accounts-dashboard/accounts-dashboard.component';
 import {SummaryComponent} from './summary/summary.component';
@@ -16,6 +15,7 @@ import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {AccountViewComponent} from './account-view/account-view.component';
 import {AccountLabelPipe} from './pipes/account-label.pipe';
 import {AccountPageComponent} from './account-page/account-page.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,4 +40,4 @@ import {AccountPageComponent} from './account-page/account-page.component';
     NgbTooltipModule
   ]
 })
-export class DashboardModule { }
+export class DashboardModule {}
