@@ -24,19 +24,22 @@ const routes: Routes = [
         path: 'summary',
         component: SummaryComponent,
         data: {
-          title: 'Summary'
+          animationState: 'summaryPage'
         }
       },
       {
         path: 'accounts',
         component: AccountsDashboardComponent,
         data: {
-          title: 'Accounts'
+          animationState: 'accountsPage'
         }
       },
       {
         path: 'accounts/:id',
-        component: AccountPageComponent
+        component: AccountPageComponent,
+        data: {
+          animationState: 'viewAccount'
+        }
       },
       {
         path: 'settings',
