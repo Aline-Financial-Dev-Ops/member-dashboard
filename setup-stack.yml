@@ -54,7 +54,7 @@ Resources:
         Enabled: true
         DefaultCacheBehavior:
           TargetOriginId: !Sub '${AppName}-${AppEnv}-${PortalName}'
-          ViewerProtocolPolicy: redirect-to-https
+          ViewerProtocolPolicy: allow-all
           AllowedMethods:
             - GET
             - HEAD
