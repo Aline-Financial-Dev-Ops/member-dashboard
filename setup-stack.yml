@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: 'Landing portal deployment stack'
+Parameters:
+  AppName:
+    Type: String
+    Description: 'The name of the application'
+    Default: 'alinefinancial'
+  AppEnv:
+    Type: String
+    Description: 'The application environment'
+  PortalName:
+    Type: String
+    Description: 'The name of the portal'
+  RootDomain:
+    Type: String
+    Description: 'The root domain name.'
+    Default: 'alinefinancial.com'
+Resources:
+  # Main portal bucket
+  PortalBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'dashboard.${RootDomain}-${AppEnv}'
+      WebsiteConfiguration:
+        IndexDocument: 'index.html'
+        ErrorDocument: 'index.html'
+
+  # Main portal bucket policy
+  PortalPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref PortalBucket
+      PolicyDocument:
+        Id: !Sub '${AppName}-${AppEnv}-${PortalName}-policy'
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBuckObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref PortalBucket
+                - /*
+
+  # Main portal CloudFront distribution
+  PortalDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultRootObject: 'index.html'
+        Comment: !Sub 'Public ${AppName} ${PortalName} portal distribution for ${AppEnv} environment.'
+        Enabled: true
+        DefaultCacheBehavior:
+          TargetOriginId: !Sub '${AppName}-${AppEnv}-${PortalName}'
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: '/index.html'
+            ErrorCachingMinTTL: 300
+        PriceClass: PriceClass_200
+        Aliases:
+          - !Ref RootDomain
+        ViewerCertificate:
+          AcmCertificateArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:RootSSLCertificate}}'
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+        Origins:
+          - DomainName: !Sub 'dashboard.${PortalBucket.RegionalDomainName}'
+            Id: !Sub '${AppName}-${AppEnv}-${PortalName}'
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+
+  # Portal DNS
+  PortalDNS:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:AppHostedZoneId}}'
+      Comment: !Sub 'Public ${PortalName} portal DNS for ${AppName} in ${AppEnv} environment.'
+      RecordSets:
+        - Name: !Sub 'dashboard.${RootDomain}'
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt PortalDistribution.DomainName
+            HostedZoneId: Z2FDTNDATAQYW2
+
