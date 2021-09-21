@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {SettingsComponent} from '@dashboard/settings/settings.component';
 import {AccountsDashboardComponent} from '@dashboard/accounts-dashboard/accounts-dashboard.component';
 import {DashboardComponent} from '@dashboard/dashboard.component';
 import {SummaryComponent} from '@dashboard/summary/summary.component';
@@ -40,10 +39,6 @@ const routes: Routes = [
         data: {
           animationState: 'viewAccount'
         }
-      },
-      {
-        path: 'settings',
-        component: SettingsComponent
       },
       {
         path: '**',
