@@ -7,16 +7,13 @@ pipeline {
     environment {
         COMMIT_HASH = "${sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()}"
         AWS_ID = credentials('AWS_ID')
-        PORTAL_NAME = 'landing'
+        PORTAL_NAME = 'member-dashboard'
         REGION = 'us-east-2'
         APP_NAME = 'alinefinancial'
         APP_ENV = 'dev'
         ORGANIZATION = 'Aline-Financial'
-        PROJECT_NAME = 'aline-landing-portal'
+        PROJECT_NAME = 'member-dashboard'
         APP_DOMAIN = 'alinefinancial.com'
-        REACT_APP_MEMBER_DASHBOARD_URL="http://dashboard.alinefinancial.com"
-        REACT_APP_API="http://api.alinefinancial.com/api"
-        PORT=3007
     }
 
     stages {
@@ -62,7 +59,7 @@ pipeline {
         stage("Deploy to S3 Bucket") {
             steps {
                 echo "Deploying '${PORTAL_NAME} portal' to S3 bucket..."
-                sh "aws s3 sync build/ s3://${APP_DOMAIN}-${APP_ENV}"
+                sh "aws s3 sync dist/aline-member-dashboard s3://${APP_DOMAIN}-${APP_ENV}"
             }
         }
     }
