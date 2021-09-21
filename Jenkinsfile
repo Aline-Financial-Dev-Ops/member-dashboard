@@ -60,7 +60,7 @@ pipeline {
         stage("Deploy to S3 Bucket") {
             steps {
                 echo "Deploying '${PORTAL_NAME} portal' to S3 bucket..."
-                sh "aws s3 sync dist/aline-member-dashboard s3://${APP_DOMAIN}-${APP_ENV}"
+                sh "aws s3 sync dist/aline-member-dashboard s3://dashboard.${APP_DOMAIN}-${APP_ENV}"
             }
         }
     }
