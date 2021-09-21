@@ -14,7 +14,7 @@ pipeline {
         ORGANIZATION = 'Aline-Financial'
         PROJECT_NAME = 'member-dashboard'
         APP_DOMAIN = 'alinefinancial.com'
-        CHROME_BIN='/usr/bin/google-chrome-stable'
+        CHROME_BIN='/usr/bin/google-chrome'
     }
 
     stages {
