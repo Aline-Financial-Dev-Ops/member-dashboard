@@ -75,7 +75,7 @@ Resources:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
         Origins:
-          - DomainName: !Sub 'dashboard.${PortalBucket.RegionalDomainName}'
+          - DomainName: !Sub '${PortalBucket.RegionalDomainName}'
             Id: !Sub '${AppName}-${AppEnv}-${PortalName}'
             S3OriginConfig:
               OriginAccessIdentity: ''
