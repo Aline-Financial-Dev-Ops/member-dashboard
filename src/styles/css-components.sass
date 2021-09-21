@@ -13,6 +13,18 @@
   min-height: 100vh
   display: none
 
+.bg-gray
+  background-color: #5e6d7d
+
+.text-black
+  color: black
+
+.text-muted-light
+  color: transparentize($light, 0.35)
+
+.text-muted-light-2
+  color: transparentize($light, 0.45)
+
 .app-modal-container
   min-width: 300px
 
@@ -59,3 +71,9 @@
   to
     width: 100%
     opacity: 1
+
+
+.action
+  transition: filter 0.15s ease
+  &:active, &:focus
+    filter: brightness(0.85)

@@ -10,6 +10,11 @@ import {ForgotPasswordComponent} from '@login/forgot-password/forgot-password.co
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+  {
     path: 'dashboard',
     loadChildren: () => import('@dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {

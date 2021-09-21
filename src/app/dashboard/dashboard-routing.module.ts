@@ -1,27 +1,49 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {SettingsComponent} from '@dashboard/settings/settings.component';
 import {AccountsDashboardComponent} from '@dashboard/accounts-dashboard/accounts-dashboard.component';
 import {DashboardComponent} from '@dashboard/dashboard.component';
 import {SummaryComponent} from '@dashboard/summary/summary.component';
+import {AuthGuard} from '@core/guards/auth.guard';
+import {NotFoundComponent} from '@app/not-found/not-found.component';
+import {AccountPageComponent} from '@dashboard/account-page/account-page.component';
+import {DashboardRoutingService} from '@dashboard/dashboard-routing.service';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
         pathMatch: 'full',
-        component: SummaryComponent
+        redirectTo: 'summary'
+      },
+      {
+        path: 'summary',
+        component: SummaryComponent,
+        data: {
+          animationState: 'summaryPage'
+        }
       },
       {
         path: 'accounts',
-        component: AccountsDashboardComponent
+        component: AccountsDashboardComponent,
+        data: {
+          animationState: 'accountsPage'
+        }
       },
       {
-        path: 'settings',
-        component: SettingsComponent
+        path: 'accounts/:id',
+        component: AccountPageComponent,
+        data: {
+          animationState: 'viewAccount'
+        }
+      },
+      {
+        path: '**',
+        pathMatch: 'full',
+        component: NotFoundComponent
       }
     ]
   }
@@ -33,6 +55,9 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    DashboardRoutingService
   ]
 })
 export class DashboardRoutingModule { }

@@ -10,4 +10,6 @@ export type UserResponse = {
   email: string;
   role: string;
   enabled: boolean;
+  memberId: number;
+  membershipId: string;
 };

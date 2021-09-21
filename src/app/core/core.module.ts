@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ErrorHandlerModule} from '@error-handler/error-handler.module';
 import {SingleCharDirective} from '@core/directives/single-char.directive';
 import {SingleCharInputComponent} from '@core/components/single-char-input/single-char-input.component';
@@ -9,6 +9,7 @@ import {FormControlIndicatorComponent} from '@core/components/form-control-indic
 import {FormControlValidationIndicatorComponent} from '@core/components/form-control-indicator/form-control-validation-indicator.component';
 import {AppIconsModule} from '@app/app-icons.module';
 import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import {AuthInterceptor} from '@core/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -30,6 +31,13 @@ import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     SingleCharDirective,
     FormControlValidationIndicatorComponent
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class CoreModule { }
