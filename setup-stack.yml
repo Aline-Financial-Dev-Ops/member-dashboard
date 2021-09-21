@@ -69,7 +69,7 @@ Resources:
             ErrorCachingMinTTL: 300
         PriceClass: PriceClass_200
         Aliases:
-          - !Ref RootDomain
+          - !Sub 'dashboard.${RootDomain}'
         ViewerCertificate:
           AcmCertificateArn: !Sub '{{resolve:secretsmanager:${AppName}/${AppEnv}/secrets/resources:SecretString:RootSSLCertificate}}'
           SslSupportMethod: sni-only
