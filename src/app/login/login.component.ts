@@ -14,7 +14,6 @@ export class LoginComponent {
   }
 
   handleLogin(credentials: Credentials): void {
-    console.table(credentials);
     this.authService.login(credentials, () => {
       this.router.navigate(['dashboard'])
         .catch(err => console.error(err));
