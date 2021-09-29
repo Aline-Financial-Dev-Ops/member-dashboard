@@ -18,6 +18,7 @@ import {CommonModule} from '@angular/common';
 import {TransactionsViewComponent} from './transactions-view/transactions-view.component';
 import {TransactionAmountPipe} from './pipes/transaction-amount.pipe';
 import {TransactionStatusPipe} from './pipes/transaction-status.pipe';
+import {TransactionDescriptionPipe} from './pipes/transaction-description.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {TransactionStatusPipe} from './pipes/transaction-status.pipe';
     AccountPageComponent,
     TransactionsViewComponent,
     TransactionAmountPipe,
-    TransactionStatusPipe
+    TransactionStatusPipe,
+    TransactionDescriptionPipe
   ],
   imports: [
     CommonModule,

@@ -20,7 +20,7 @@
           <tr *ngFor="let transaction of transactions">
             <td>{{transaction.date | date: 'MM/dd/yyyy'}}</td>
             <td *ngIf="mode==='MEMBER'">{{transaction.accountNumber.substr(transaction.accountNumber.length - 7)}}</td>
-            <td>{{transaction.description}}</td>
+            <td>{{transaction | transactionDescription}}</td>
             <td [ngClass]="{'text-danger': isDecreasing(transaction)}">{{transaction | transactionAmount}}</td>
             <td>{{transaction.postedBalance / 100 | currency}}</td>
             <td [ngClass]="{

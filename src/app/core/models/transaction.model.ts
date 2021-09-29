@@ -40,7 +40,7 @@ export type Transaction = {
   postedBalance: number;
   type: TransactionType;
   status: TransactionStatus;
-  description: string;
+  description?: string;
   merchant: Merchant;
   date: Date;
 };
