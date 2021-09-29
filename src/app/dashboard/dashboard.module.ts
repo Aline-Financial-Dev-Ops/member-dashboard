@@ -21,6 +21,8 @@ import {TransactionStatusPipe} from './pipes/transaction-status.pipe';
 import {TransactionDescriptionPipe} from './pipes/transaction-description.pipe';
 import {SortToggleComponent} from './transactions-view/sort-toggle/sort-toggle.component';
 import {FormsModule} from '@angular/forms';
+import {TransactionRowComponent} from './transactions-view/transaction-row/transaction-row.component';
+import {TransactionsTableComponent} from './transactions-view/transactions-table/transactions-table.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import {FormsModule} from '@angular/forms';
     TransactionAmountPipe,
     TransactionStatusPipe,
     TransactionDescriptionPipe,
-    SortToggleComponent
+    SortToggleComponent,
+    TransactionRowComponent,
+    TransactionsTableComponent
   ],
   imports: [
     CommonModule,
