@@ -4,6 +4,7 @@ import {BaseHttpService} from '@core/services/base-http.service';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {TransactionsPage} from '@core/models/transactions-page.model';
+import {PageParams} from '@core/models/paginated-response.model';
 
 @Injectable({
   providedIn: CoreModule
@@ -14,12 +15,14 @@ export class TransactionService extends BaseHttpService {
     super();
   }
 
-  getTransactionsByMemberId(memberId: number): Observable<TransactionsPage> {
-    return this.client.get<TransactionsPage>(this.getApi(`/members/${memberId}/transactions`));
+  getTransactionsByMemberId(memberId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
+    return this.client.get<TransactionsPage>(this.getApi(`/members/${memberId}/transactions`),
+      {params});
   }
 
-  getTransactionsByAccountId(accountId: number): Observable<TransactionsPage> {
-    return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`));
+  getTransactionsByAccountId(accountId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
+    return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`),
+      {params});
   }
 
 }

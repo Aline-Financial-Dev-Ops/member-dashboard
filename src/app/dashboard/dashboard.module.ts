@@ -15,6 +15,7 @@ import {AccountViewComponent} from './account-view/account-view.component';
 import {AccountLabelPipe} from './pipes/account-label.pipe';
 import {AccountPageComponent} from './account-page/account-page.component';
 import {CommonModule} from '@angular/common';
+import {TransactionsViewComponent} from './transactions-view/transactions-view.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {CommonModule} from '@angular/common';
     DrawerComponent,
     AccountViewComponent,
     AccountLabelPipe,
-    AccountPageComponent
+    AccountPageComponent,
+    TransactionsViewComponent
   ],
   imports: [
     CommonModule,
