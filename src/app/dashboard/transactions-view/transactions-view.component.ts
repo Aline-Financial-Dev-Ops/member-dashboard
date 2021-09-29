@@ -3,6 +3,7 @@ import {TransactionService} from '@core/services/transaction.service';
 import {AuthService} from '@core/services/auth.service';
 import {Transaction, TransactionType} from '@core/models/transaction.model';
 import {TransactionsPage} from '@core/models/transactions-page.model';
+import {SortValue} from '@dashboard/transactions-view/sort-toggle/sort-toggle.component';
 
 export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 
@@ -20,10 +21,11 @@ export class TransactionsViewComponent implements OnInit {
   transactions?: Transaction[];
   totalElements = 0;
   pageSize = 5;
-  pageSort = 'date';
+  pageSort = 'date,desc';
   totalPages = 0;
   loaded = false;
   currentPage = 1;
+  searchTerm?: string;
 
   constructor(private authService: AuthService,
               private transactionService: TransactionService) {
@@ -52,8 +54,27 @@ export class TransactionsViewComponent implements OnInit {
     return {
       sort: this.pageSort,
       size: this.pageSize,
-      page: currentPage - 1
+      page: currentPage - 1,
+      search: this.searchTermEmpty() ? undefined : this.searchTerm
     };
+  }
+
+  private searchTermEmpty() {
+    return (!this.searchTerm || this.searchTerm.trim().length == 0);
+  }
+
+  /**
+   * Apply the sort value to the page and reload page
+   * @param value The value of the sort
+   * @param order The order of the sort
+   */
+  applySort({value, order}: SortValue) {
+    this.pageSort = `${value},${order}`;
+    this.loadPage(this.currentPage);
+  }
+
+  applySearch() {
+
   }
 
   loadPage(currentPage: number) {

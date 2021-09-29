@@ -1,5 +1,5 @@
 export type PageParams = {
-  sort?: string;
+  sort?: string | string[];
   page?: number;
   size?: number;
   search?: string;

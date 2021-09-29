@@ -17,13 +17,13 @@ export class TransactionService extends BaseHttpService {
     super();
   }
 
-  getTransactionsByMemberId(memberId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
+  getTransactionsByMemberId(memberId: number, params: PageParams = {sort: ['date,desc']}): Observable<TransactionsPage> {
     return this.client.get(this.getApi(`/members/${memberId}/transactions`),
       {params})
       .pipe(this.transactionPipe());
   }
 
-  getTransactionsByAccountId(accountId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
+  getTransactionsByAccountId(accountId: number, params: PageParams = {sort: ['date,desc']}): Observable<TransactionsPage> {
     return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`),
       {params})
       .pipe(this.transactionPipe());

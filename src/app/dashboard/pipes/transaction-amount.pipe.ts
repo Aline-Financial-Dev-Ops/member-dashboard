@@ -9,7 +9,6 @@ export class TransactionAmountPipe implements PipeTransform {
 
   transform(transaction: Transaction): string {
     const currencyStr = formatCurrency(transaction.amount / 100, 'en-us', '$', 'USD');
-    console.log(`Decreasing?: ${this.isDecreasing(transaction)}`);
     if (this.isDecreasing(transaction)) {
       return `(${currencyStr})`;
     } else {
