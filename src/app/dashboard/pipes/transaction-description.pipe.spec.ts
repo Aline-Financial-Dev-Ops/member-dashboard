@@ -33,7 +33,10 @@ describe('TransactionDescriptionPipe', () => {
       description: 'This is a description'
     };
 
-    expect(pipe.transform(transaction)).toBe('This is a description');
+    const datePipe = new DatePipe('en-us');
+    const providedDescription = `${transaction.merchant ? transaction.merchant.code + ' - ' : ''}${transaction.description} ${datePipe.transform(transaction.date, 'MM/dd')}`;
+
+    expect(pipe.transform(transaction)).toBe(providedDescription);
 
   });
 

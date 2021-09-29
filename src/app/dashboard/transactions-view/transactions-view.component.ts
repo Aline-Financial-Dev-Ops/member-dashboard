@@ -15,7 +15,7 @@ export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 export class TransactionsViewComponent implements OnInit {
 
   @Input()
-  title = 'Transactions';
+  viewTitle = 'Transactions';
 
   @Input()
   mode!: TransactionsViewMode;
