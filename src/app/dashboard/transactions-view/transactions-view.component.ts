@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TransactionService} from '@core/services/transaction.service';
 import {AuthService} from '@core/services/auth.service';
 import {Transaction, TransactionType} from '@core/models/transaction.model';
+import {TransactionsPage} from '@core/models/transactions-page.model';
 
 export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 
@@ -20,16 +21,44 @@ export class TransactionsViewComponent implements OnInit {
   totalElements = 0;
   pageSize = 5;
   pageSort = 'date';
+  totalPages = 0;
+  loaded = false;
+  currentPage = 1;
 
   constructor(private authService: AuthService,
               private transactionService: TransactionService) {
   }
 
   ngOnInit() {
-    this.loadPage(0);
+    this.loadPage(1);
+  }
+
+  /**
+   * Set component members when page is loaded
+   * @param page The loaded page
+   */
+  setMembers(page: TransactionsPage) {
+    this.transactions = page.content;
+    this.totalElements = page.totalElements;
+    this.totalPages = page.totalPages;
+    this.loaded = true;
+  }
+
+  /**
+   * Set the request parameters
+   * @param currentPage The current page number to load
+   */
+  getParams(currentPage: number) {
+    return {
+      sort: this.pageSort,
+      size: this.pageSize,
+      page: currentPage - 1
+    };
   }
 
   loadPage(currentPage: number) {
+    this.currentPage = currentPage;
+    this.loaded = false;
     switch (this.mode) {
       case 'ACCOUNT':
         this.loadAccountPage(currentPage);
@@ -46,15 +75,8 @@ export class TransactionsViewComponent implements OnInit {
 
     this.authService.currentUser.subscribe(user => {
       if (user) {
-        this.transactionService.getTransactionsByAccountId(this.accountId!, {
-          sort: this.pageSort,
-          size: this.pageSize,
-          page: currentPage - 1
-        })
-          .subscribe(page => {
-            this.transactions = page.content;
-            this.totalElements = page.totalElements;
-          });
+        this.transactionService.getTransactionsByAccountId(this.accountId!, this.getParams(currentPage))
+          .subscribe(page => this.setMembers(page));
       }
     });
   }
@@ -62,15 +84,8 @@ export class TransactionsViewComponent implements OnInit {
   loadMemberPage(currentPage: number) {
     this.authService.currentUser.subscribe(user => {
       if (user) {
-        this.transactionService.getTransactionsByMemberId(user.memberId, {
-          sort: this.pageSort,
-          size: this.pageSize,
-          page: currentPage - 1
-        })
-          .subscribe(page => {
-            this.transactions = page.content;
-            this.totalElements = page.totalElements;
-          });
+        this.transactionService.getTransactionsByMemberId(user.memberId, this.getParams(currentPage))
+          .subscribe(page => this.setMembers(page));
       }
     });
   }

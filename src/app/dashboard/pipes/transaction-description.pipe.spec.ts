@@ -1,5 +1,6 @@
 import {TransactionDescriptionPipe} from './transaction-description.pipe';
 import {Transaction, TransactionMethod, TransactionStatus, TransactionType} from '@core/models/transaction.model';
+import {DatePipe} from '@angular/common';
 
 describe('TransactionDescriptionPipe', () => {
   let pipe: TransactionDescriptionPipe;
@@ -36,7 +37,7 @@ describe('TransactionDescriptionPipe', () => {
 
   });
 
-  it('should return "No description" if description is undefined', () => {
+  it('should return default message if description is undefined', () => {
     const transaction: Transaction = {
       accountNumber: '',
       amount: 0,
@@ -55,11 +56,14 @@ describe('TransactionDescriptionPipe', () => {
       id: 1
     };
 
-    expect(pipe.transform(transaction)).toBe('No description');
+    const datePipe = new DatePipe('en-us');
+    const expectedMessage = `${transaction.merchant ? transaction.merchant.code + ' ' : ''}${TransactionType[transaction.type]} ${datePipe.transform(transaction.date, 'MM/dd')} - ${TransactionStatus[transaction.status]}`;
+
+    expect(pipe.transform(transaction)).toBe(expectedMessage);
 
   });
 
-  it('should return "No description" if description is blank.', () => {
+  it('should return default message if description is blank.', () => {
     const transaction: Transaction = {
       accountNumber: '',
       amount: 0,
@@ -79,30 +83,10 @@ describe('TransactionDescriptionPipe', () => {
       description: ' '
     };
 
-    expect(pipe.transform(transaction)).toBe('No description');
+    const datePipe = new DatePipe('en-us');
+    const expectedMessage = `${transaction.merchant ? transaction.merchant.code + ' ' : ''}${TransactionType[transaction.type]} ${datePipe.transform(transaction.date, 'MM/dd')} - ${TransactionStatus[transaction.status]}`;
 
-  });
-
-  it('should return "Different no description message" if description is blank', () => {
-    const transaction: Transaction = {
-      accountNumber: '',
-      amount: 0,
-      date: new Date(),
-      initialBalance: 0,
-      merchant: {
-        name: '',
-        description: '',
-        code: '',
-        registeredAt: new Date()
-      },
-      method: TransactionMethod.ACH,
-      postedBalance: 0,
-      status: TransactionStatus.APPROVED,
-      type: TransactionType.PURCHASE,
-      id: 1
-    };
-
-    expect(pipe.transform(transaction, 'Different no description message')).toBe('Different no description message');
+    expect(pipe.transform(transaction)).toBe(expectedMessage);
 
   });
 });
