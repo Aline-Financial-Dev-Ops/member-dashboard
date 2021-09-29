@@ -19,6 +19,7 @@ import {
   faInfoCircle,
   faSearch,
   faShieldAlt,
+  faSyncAlt,
   faTags,
   faTimesCircle,
   faUnlockAlt,
@@ -57,7 +58,8 @@ const icons: IconDefinition[] = [
   faEyeSlash,
   faCaretDown,
   faCaretUp,
-  faSearch
+  faSearch,
+  faSyncAlt
 ];
 
 @NgModule({

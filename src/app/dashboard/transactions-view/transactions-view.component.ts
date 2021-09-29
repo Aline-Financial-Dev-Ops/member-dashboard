@@ -15,6 +15,9 @@ export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 export class TransactionsViewComponent implements OnInit {
 
   @Input()
+  title = 'Transactions';
+
+  @Input()
   mode!: TransactionsViewMode;
   @Input()
   accountId?: number;
@@ -74,7 +77,8 @@ export class TransactionsViewComponent implements OnInit {
   }
 
   applySearch() {
-
+    console.log(this.searchTerm);
+    console.warn('Search has not yet been implemented.');
   }
 
   loadPage(currentPage: number) {
