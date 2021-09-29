@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {TransactionsPage} from '@core/models/transactions-page.model';
 import {PageParams} from '@core/models/paginated-response.model';
+import {map} from 'rxjs/operators';
+import {TransactionMethod, TransactionStatus, TransactionType} from '@core/models/transaction.model';
 
 @Injectable({
   providedIn: CoreModule
@@ -16,13 +18,32 @@ export class TransactionService extends BaseHttpService {
   }
 
   getTransactionsByMemberId(memberId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
-    return this.client.get<TransactionsPage>(this.getApi(`/members/${memberId}/transactions`),
-      {params});
+    return this.client.get(this.getApi(`/members/${memberId}/transactions`),
+      {params})
+      .pipe(this.transactionPipe());
   }
 
   getTransactionsByAccountId(accountId: number, params: PageParams = {sort: 'date'}): Observable<TransactionsPage> {
     return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`),
-      {params});
+      {params})
+      .pipe(this.transactionPipe());
+  }
+
+  /**
+   * Map pipe to convert transaction enum string to
+   * typescript enums.
+   * @private
+   */
+  private transactionPipe() {
+    return map((page: any) => {
+      page.content.map((transaction: any) => {
+        transaction.type = TransactionType[transaction.type];
+        transaction.status = TransactionStatus[transaction.status];
+        transaction.method = TransactionMethod[transaction.method];
+        return transaction;
+      });
+      return <TransactionsPage> page;
+    });
   }
 
 }

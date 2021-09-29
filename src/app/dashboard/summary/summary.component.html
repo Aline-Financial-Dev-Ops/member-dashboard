@@ -10,14 +10,7 @@
       </app-account-view>
     </div>
   </div>
-  <div class="container border rounded-3 p-3 shadow-sm mb-4">
-    <div *ngIf="transactionsPage else loading">
-      <h1 class="h5 text-primary">Recent Activity</h1>
-      <hr class="line-divider"/>
-      <app-transactions-view [transactionsPage]="transactionsPage">
-      </app-transactions-view>
-    </div>
-  </div>
+  <app-transactions-view mode="MEMBER"></app-transactions-view>
 </div>
 
 <ng-template #loading>

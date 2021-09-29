@@ -10,12 +10,14 @@ import {TabNavComponent} from './dashboard-nav/tab-nav/tab-nav.component';
 import {NavTabComponent} from '@dashboard/dashboard-nav/tab-nav/nav-tab.component';
 import {UserAvatarComponent} from './user-avatar/user-avatar.component';
 import {DrawerComponent} from './dashboard-nav/drawer/drawer.component';
-import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {AccountViewComponent} from './account-view/account-view.component';
 import {AccountLabelPipe} from './pipes/account-label.pipe';
 import {AccountPageComponent} from './account-page/account-page.component';
 import {CommonModule} from '@angular/common';
 import {TransactionsViewComponent} from './transactions-view/transactions-view.component';
+import {TransactionAmountPipe} from './pipes/transaction-amount.pipe';
+import {TransactionStatusPipe} from './pipes/transaction-status.pipe';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,17 @@ import {TransactionsViewComponent} from './transactions-view/transactions-view.c
     AccountViewComponent,
     AccountLabelPipe,
     AccountPageComponent,
-    TransactionsViewComponent
+    TransactionsViewComponent,
+    TransactionAmountPipe,
+    TransactionStatusPipe
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     LogoModule,
     AppIconsModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgbPaginationModule
   ]
 })
 export class DashboardModule {}
