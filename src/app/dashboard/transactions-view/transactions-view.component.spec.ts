@@ -1,6 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TransactionsViewComponent} from './transactions-view.component';
+import {AuthService} from '@core/services/auth.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {TransactionService} from '@core/services/transaction.service';
 
 describe('TransactionsViewComponent', () => {
   let component: TransactionsViewComponent;
@@ -8,7 +11,12 @@ describe('TransactionsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TransactionsViewComponent]
+      imports: [HttpClientTestingModule],
+      declarations: [TransactionsViewComponent],
+      providers: [
+        AuthService,
+        TransactionService
+      ]
     })
     .compileComponents();
   });

@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -10,6 +9,8 @@ import {CoreModule} from '@core/core.module';
 import {GlobalModalModule} from '@app/global-modal/global-modal.module';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '@environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LoginModule,
     RegistrationModule,
     FontAwesomeModule,
-    GlobalModalModule
+    GlobalModalModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
