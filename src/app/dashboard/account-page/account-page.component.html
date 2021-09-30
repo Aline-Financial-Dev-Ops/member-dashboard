@@ -10,4 +10,9 @@
     <app-account-view viewType="full" [account]="account"></app-account-view>
   </div>
 
+  <app-transactions-view *ngIf="account"
+                         viewTitle="Transactions"
+                         mode="ACCOUNT"
+                         [accountId]="account.id"></app-transactions-view>
+
 </div>

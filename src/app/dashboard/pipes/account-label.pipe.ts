@@ -8,7 +8,7 @@ export class AccountLabelPipe implements PipeTransform {
 
   transform(account: AccountResponse, visible = false): string {
     const accountNumber = visible ? account.accountNumber :
-      `***${account.accountNumber.substr(account.accountNumber.length - 4)}`;
+      `•••${account.accountNumber.substr(account.accountNumber.length - 4)}`;
     return `${account.type} ${accountNumber}`;
   }
 

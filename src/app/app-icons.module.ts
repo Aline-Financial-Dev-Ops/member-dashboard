@@ -2,12 +2,33 @@ import {NgModule} from '@angular/core';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
-  faAngleRight, faArrowLeft, faArrowRight, faBars, faCaretRight, faChartBar, faCheckCircle, faCircle, faEllipsisV,
-  faExclamationCircle, faEye, faEyeSlash, faIdCard,
+  faAngleRight,
+  faArrowLeft,
+  faArrowRight,
+  faBars,
+  faCaretDown,
+  faCaretUp,
+  faChartBar,
+  faCheckCircle,
+  faCircle,
+  faEllipsisH,
+  faEllipsisV,
+  faExclamationCircle,
+  faEye,
+  faEyeSlash,
+  faIdCard,
   faInfoCircle,
-  faShieldAlt, faTags, faTimesCircle, faUnlockAlt, faUser,
-  faUserCheck, faUserCircle,
-  faUserPlus, faWallet
+  faSearch,
+  faShieldAlt,
+  faSyncAlt,
+  faTags,
+  faTimesCircle,
+  faUnlockAlt,
+  faUser,
+  faUserCheck,
+  faUserCircle,
+  faUserPlus,
+  faWallet
 } from '@fortawesome/free-solid-svg-icons';
 import {faCircle as regCircle} from '@fortawesome/free-regular-svg-icons';
 
@@ -35,7 +56,12 @@ const icons: IconDefinition[] = [
   faEllipsisV,
   faArrowLeft,
   faEye,
-  faEyeSlash
+  faEyeSlash,
+  faCaretDown,
+  faCaretUp,
+  faSearch,
+  faSyncAlt,
+  faEllipsisH
 ];
 
 @NgModule({

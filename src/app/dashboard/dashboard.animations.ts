@@ -21,7 +21,9 @@ export const slider =
         style({
           opacity: 1
         })
-      ]),
+      ], {
+        optional: true
+      }),
     ])
 
   ]);

@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="container border rounded-3 p-3 shadow-sm">
+  <div class="container border rounded-3 p-3 shadow-sm mb-4">
     <div *ngIf="accounts else loading">
       <h1 class="h5 text-primary">My Accounts</h1>
       <hr class="line-divider"/>
@@ -10,6 +10,7 @@
       </app-account-view>
     </div>
   </div>
+  <app-transactions-view mode="MEMBER" viewTitle="My Transactions"></app-transactions-view>
 </div>
 
 <ng-template #loading>

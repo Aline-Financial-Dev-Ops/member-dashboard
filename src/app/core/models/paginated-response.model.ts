@@ -1,3 +1,10 @@
+export type PageParams = {
+  sort?: string | string[];
+  page?: number;
+  size?: number;
+  search?: string;
+};
+
 export type Sort = {
   sorted: boolean;
   unsorted: boolean;
