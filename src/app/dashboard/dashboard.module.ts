@@ -17,7 +17,7 @@ import {AccountPageComponent} from './account-page/account-page.component';
 import {CommonModule} from '@angular/common';
 import {TransactionsViewComponent} from './transactions-view/transactions-view.component';
 import {TransactionAmountPipe} from './pipes/transaction-amount.pipe';
-import {TransactionStatusPipe} from './pipes/transaction-status.pipe';
+import {TransactionEnumPipe} from './pipes/transaction-enum.pipe';
 import {TransactionDescriptionPipe} from './pipes/transaction-description.pipe';
 import {SortToggleComponent} from './transactions-view/sort-toggle/sort-toggle.component';
 import {FormsModule} from '@angular/forms';
@@ -39,7 +39,7 @@ import {TransactionsTableComponent} from './transactions-view/transactions-table
     AccountPageComponent,
     TransactionsViewComponent,
     TransactionAmountPipe,
-    TransactionStatusPipe,
+    TransactionEnumPipe,
     TransactionDescriptionPipe,
     SortToggleComponent,
     TransactionRowComponent,

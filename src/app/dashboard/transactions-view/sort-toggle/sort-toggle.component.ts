@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
 export type SortOrder = 'asc' | 'desc';
@@ -18,7 +18,7 @@ export type SortValue = {
   `,
   styleUrls: ['./sort-toggle.component.sass']
 })
-export class SortToggleComponent implements OnInit {
+export class SortToggleComponent {
 
   @Input()
   name!: string;
@@ -34,10 +34,6 @@ export class SortToggleComponent implements OnInit {
   applySort = new EventEmitter<SortValue>();
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log('Toggle');
-  }
 
   toggleOrder() {
     this.orderBool = !this.orderBool;
