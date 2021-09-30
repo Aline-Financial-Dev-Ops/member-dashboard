@@ -4,6 +4,7 @@ import {AuthService} from '@core/services/auth.service';
 import {Transaction, TransactionType} from '@core/models/transaction.model';
 import {TransactionsPage} from '@core/models/transactions-page.model';
 import {SortValue} from '@dashboard/transactions-view/sort-toggle/sort-toggle.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 
@@ -31,7 +32,8 @@ export class TransactionsViewComponent implements OnInit {
   searchTerm?: string;
 
   constructor(private authService: AuthService,
-              private transactionService: TransactionService) {
+              private transactionService: TransactionService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -136,6 +138,13 @@ export class TransactionsViewComponent implements OnInit {
       default:
         return false;
     }
+  }
+
+  open(content: any) {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-title',
+      centered: true
+    });
   }
 
 }

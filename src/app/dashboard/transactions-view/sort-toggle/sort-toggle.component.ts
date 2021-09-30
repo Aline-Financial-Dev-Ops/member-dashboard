@@ -10,7 +10,7 @@ export type SortValue = {
 @Component({
   selector: 'app-sort-toggle',
   template: `
-    <button class="btn p-0 m-0 w-100 text-start d-inline-flex justify-content-between shadow-none pe-4"
+    <button class="btn p-0 m-0 w-100 text-start d-inline-flex justify-content-between shadow-none"
             (click)="toggleOrder()">
       <span class="fw-bold">{{name}}</span>
       <fa-icon [icon]="sortIcon"></fa-icon>

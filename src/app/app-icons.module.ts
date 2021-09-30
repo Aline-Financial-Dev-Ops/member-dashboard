@@ -11,6 +11,7 @@ import {
   faChartBar,
   faCheckCircle,
   faCircle,
+  faEllipsisH,
   faEllipsisV,
   faExclamationCircle,
   faEye,
@@ -59,7 +60,8 @@ const icons: IconDefinition[] = [
   faCaretDown,
   faCaretUp,
   faSearch,
-  faSyncAlt
+  faSyncAlt,
+  faEllipsisH
 ];
 
 @NgModule({
