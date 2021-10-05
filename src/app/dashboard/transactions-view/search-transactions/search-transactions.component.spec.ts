@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SearchTransactionsComponent} from './search-transactions.component';
+import {FormsModule} from '@angular/forms';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('SearchTransactionsComponent', () => {
   let component: SearchTransactionsComponent;
@@ -8,7 +10,9 @@ describe('SearchTransactionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchTransactionsComponent]
+      imports: [FormsModule],
+      declarations: [SearchTransactionsComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

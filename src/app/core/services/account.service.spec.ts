@@ -3,6 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {AccountService} from './account.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {environment} from '@environments/environment';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 
 describe('AccountService', () => {
@@ -17,7 +18,8 @@ describe('AccountService', () => {
       ],
       providers: [
         AccountService
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
     service = TestBed.inject(AccountService);
     httpMock = TestBed.inject(HttpTestingController);

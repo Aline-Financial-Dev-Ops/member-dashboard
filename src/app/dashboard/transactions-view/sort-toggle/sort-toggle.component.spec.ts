@@ -1,6 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SortToggleComponent} from './sort-toggle.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('SortToggleComponent', () => {
   let component: SortToggleComponent;
@@ -8,7 +9,8 @@ describe('SortToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SortToggleComponent]
+      declarations: [SortToggleComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });
