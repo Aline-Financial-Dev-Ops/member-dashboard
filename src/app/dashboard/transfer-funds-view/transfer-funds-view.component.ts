@@ -15,6 +15,8 @@ export class TransferFundsViewComponent implements OnInit {
   @Input()
   viewTitle = 'Transfer Money';
 
+  transferAmount = 0;
+
   constructor() { }
 
   ngOnInit(): void {

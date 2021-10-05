@@ -11,7 +11,7 @@
     <div class="fs-1 my-3 font-montserrat">{{account.balance / 100 | currency}}</div>
     <div class="small text-muted">
       <span *ngIf="account.availableBalance && account.type === 'CHECKING'">Available Balance: {{account.availableBalance / 100 | currency}}</span>
-      <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent}}</span>
+      <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent: '1.1'}}</span>
     </div>
   </div>
 
@@ -33,7 +33,7 @@
       </div>
       <div class="font-noto-sans w-100 text-end small text-muted fw-normal">
         <span *ngIf="account.availableBalance && account.type === 'CHECKING'">Available Balance: {{account.availableBalance / 100 | currency}}</span>
-        <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent}}</span>
+        <span *ngIf="account.apy">Annual Percentage Yield: {{account.apy | percent: '1.1'}}</span>
       </div>
     </div>
     <div class="mx-1">

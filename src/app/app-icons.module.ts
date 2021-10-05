@@ -13,6 +13,7 @@ import {
   faCircle,
   faEllipsisH,
   faEllipsisV,
+  faExchangeAlt,
   faExclamationCircle,
   faEye,
   faEyeSlash,
@@ -61,7 +62,8 @@ const icons: IconDefinition[] = [
   faCaretUp,
   faSearch,
   faSyncAlt,
-  faEllipsisH
+  faEllipsisH,
+  faExchangeAlt
 ];
 
 @NgModule({

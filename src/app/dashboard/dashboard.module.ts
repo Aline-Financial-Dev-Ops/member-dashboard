@@ -25,6 +25,8 @@ import {TransactionRowComponent} from './transactions-view/transaction-row/trans
 import {TransactionsTableComponent} from './transactions-view/transactions-table/transactions-table.component';
 import {SearchTransactionsComponent} from './transactions-view/search-transactions/search-transactions.component';
 import {TransferFundsViewComponent} from './transfer-funds-view/transfer-funds-view.component';
+import {AppMaskModule} from '@app/app-mask.module';
+import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import {TransferFundsViewComponent} from './transfer-funds-view/transfer-funds-v
     NgbTooltipModule,
     NgbPaginationModule,
     NgbButtonsModule,
-    FormsModule
+    FormsModule,
+    AppMaskModule,
+    AppCurrencyMaskModule
   ]
 })
 export class DashboardModule {}
