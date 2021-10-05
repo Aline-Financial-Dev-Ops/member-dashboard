@@ -143,15 +143,8 @@
 
 <ng-template #tableMenu>
   <div class="d-flex justify-content-end my-2">
-    <div class="mx-2">
-      <form #searchForm="ngForm" (ngSubmit)="applySearch()">
-        <div class="input-group">
-          <input name="searchTerm" [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Search"/>
-          <button type="submit" class="btn btn-outline-secondary">
-            <fa-icon icon="search"></fa-icon>
-          </button>
-        </div>
-      </form>
+    <div class="mx-2 flex-grow-1">
+      <app-search-transactions (search)="applySearch($event)"></app-search-transactions>
     </div>
     <div class="mx-2">
       <button class="btn btn-outline-secondary rounded-3" ngbTooltip="Refresh" placement="bottom" (click)="loadPage(currentPage)">

@@ -60,7 +60,7 @@ export class TransactionsViewComponent implements OnInit {
       sort: this.pageSort,
       size: this.pageSize,
       page: currentPage - 1,
-      search: this.searchTermEmpty() ? undefined : this.searchTerm
+      search: this.searchTermEmpty() ? '' : this.searchTerm
     };
   }
 
@@ -78,8 +78,8 @@ export class TransactionsViewComponent implements OnInit {
     this.loadPage(this.currentPage);
   }
 
-  applySearch() {
-    console.log(this.searchTerm);
+  applySearch(searchTerms: string[]) {
+    console.log(searchTerms);
     console.warn('Search has not yet been implemented.');
   }
 
