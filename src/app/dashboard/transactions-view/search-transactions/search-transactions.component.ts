@@ -23,6 +23,7 @@ export class SearchTransactionsComponent {
   applySearch() {
     if (this.searchTerm) {
       this.searchTerms.push(this.searchTerm);
+      this.searchTerm = undefined;
     }
     this.search.emit(this.searchTerms);
   }
