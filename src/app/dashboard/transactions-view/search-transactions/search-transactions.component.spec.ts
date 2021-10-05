@@ -1,22 +1,24 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {SortToggleComponent} from './sort-toggle.component';
+import {SearchTransactionsComponent} from './search-transactions.component';
+import {FormsModule} from '@angular/forms';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
-describe('SortToggleComponent', () => {
-  let component: SortToggleComponent;
-  let fixture: ComponentFixture<SortToggleComponent>;
+describe('SearchTransactionsComponent', () => {
+  let component: SearchTransactionsComponent;
+  let fixture: ComponentFixture<SearchTransactionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SortToggleComponent],
+      imports: [FormsModule],
+      declarations: [SearchTransactionsComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SortToggleComponent);
+    fixture = TestBed.createComponent(SearchTransactionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

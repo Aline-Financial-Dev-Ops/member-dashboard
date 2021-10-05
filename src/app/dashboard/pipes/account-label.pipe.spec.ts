@@ -1,4 +1,4 @@
-import { AccountLabelPipe } from './account-label.pipe';
+import {AccountLabelPipe} from './account-label.pipe';
 
 describe('AccountLabelPipe', () => {
   it('create an instance', () => {

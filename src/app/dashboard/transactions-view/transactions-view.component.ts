@@ -5,6 +5,7 @@ import {Transaction, TransactionType} from '@core/models/transaction.model';
 import {TransactionsPage} from '@core/models/transactions-page.model';
 import {SortValue} from '@dashboard/transactions-view/sort-toggle/sort-toggle.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {PageParams} from '@core/models/paginated-response.model';
 
 export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 
@@ -29,7 +30,7 @@ export class TransactionsViewComponent implements OnInit {
   totalPages = 0;
   loaded = false;
   currentPage = 1;
-  searchTerm?: string;
+  searchTerms: string[] = [];
 
   constructor(private authService: AuthService,
               private transactionService: TransactionService,
@@ -55,17 +56,13 @@ export class TransactionsViewComponent implements OnInit {
    * Set the request parameters
    * @param currentPage The current page number to load
    */
-  getParams(currentPage: number) {
+  getParams(currentPage: number): PageParams {
     return {
       sort: this.pageSort,
       size: this.pageSize,
       page: currentPage - 1,
-      search: this.searchTermEmpty() ? undefined : this.searchTerm
+      search: this.searchTerms.length > 0 ? this.searchTerms : ''
     };
-  }
-
-  private searchTermEmpty() {
-    return (!this.searchTerm || this.searchTerm.trim().length == 0);
   }
 
   /**
@@ -78,9 +75,9 @@ export class TransactionsViewComponent implements OnInit {
     this.loadPage(this.currentPage);
   }
 
-  applySearch() {
-    console.log(this.searchTerm);
-    console.warn('Search has not yet been implemented.');
+  applySearch(searchTerms: string[]) {
+    this.searchTerms = searchTerms;
+    this.loadPage(this.currentPage);
   }
 
   loadPage(currentPage: number) {

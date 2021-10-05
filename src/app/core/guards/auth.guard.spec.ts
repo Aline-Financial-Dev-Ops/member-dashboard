@@ -4,6 +4,8 @@ import {AuthGuard} from './auth.guard';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AuthService} from '@core/services/auth.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {AppRoutingModule} from '@app/app-routing.module';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -11,10 +13,11 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, AppRoutingModule],
       providers: [
         AuthService
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
   });
 

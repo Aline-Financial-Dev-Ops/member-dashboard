@@ -23,6 +23,7 @@ import {SortToggleComponent} from './transactions-view/sort-toggle/sort-toggle.c
 import {FormsModule} from '@angular/forms';
 import {TransactionRowComponent} from './transactions-view/transaction-row/transaction-row.component';
 import {TransactionsTableComponent} from './transactions-view/transactions-table/transactions-table.component';
+import { SearchTransactionsComponent } from './transactions-view/search-transactions/search-transactions.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {TransactionsTableComponent} from './transactions-view/transactions-table
     TransactionDescriptionPipe,
     SortToggleComponent,
     TransactionRowComponent,
-    TransactionsTableComponent
+    TransactionsTableComponent,
+    SearchTransactionsComponent
   ],
   imports: [
     CommonModule,

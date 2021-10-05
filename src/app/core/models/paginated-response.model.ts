@@ -2,7 +2,7 @@ export type PageParams = {
   sort?: string | string[];
   page?: number;
   size?: number;
-  search?: string;
+  search?: string | string[];
 };
 
 export type Sort = {
