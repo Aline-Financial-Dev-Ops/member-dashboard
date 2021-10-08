@@ -5,13 +5,40 @@
 
   <div class="d-flex my-2">
     <div class="flex-grow-1 mx-2">
-      <select class="form-select"></select>
+      <div class="form-floating">
+        <select id="fromAccount"
+                class="form-select"
+                [(ngModel)]="fromAccount">
+          <option [ngValue]="undefined">--</option>
+          <ng-container *ngFor="let account of accounts">
+            <option [ngValue]="account" *ngIf="account != toAccount">
+              {{account | accountLabel}}
+            </option>
+          </ng-container>
+        </select>
+        <label class="form-label" for="fromAccount">From</label>
+      </div>
+
     </div>
-    <button class="btn btn-outline-primary rounded-circle">
-      <fa-icon icon="exchange-alt"></fa-icon>
-    </button>
+    <div class="d-flex justify-content-center align-items-center">
+      <button class="btn btn-outline-primary rounded-circle">
+        <fa-icon icon="exchange-alt"></fa-icon>
+      </button>
+    </div>
     <div class="flex-grow-1 mx-2">
-      <select class="form-select"></select>
+      <div class="form-floating">
+        <select id="toAccount"
+                class="form-select"
+                [(ngModel)]="toAccount">
+          <option [ngValue]="undefined">--</option>
+          <ng-container *ngFor="let account of accounts">
+            <option [ngValue]="account" *ngIf="account != fromAccount">
+              {{account | accountLabel}}
+            </option>
+          </ng-container>
+        </select>
+        <label class="form-label" for="toAccount">To</label>
+      </div>
     </div>
   </div>
 

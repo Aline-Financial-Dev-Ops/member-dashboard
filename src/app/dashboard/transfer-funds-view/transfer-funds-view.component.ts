@@ -17,14 +17,17 @@ export class TransferFundsViewComponent implements OnInit {
   viewTitle = 'Transfer Money';
 
   @Input()
-  accounts: AccountResponse[] = [];
+  accounts!: AccountResponse[]
 
   transferAmount = 0;
+  fromAccount?: AccountResponse;
+  toAccount?: AccountResponse;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    console.log('Transfer funds view.');
+
   }
 
 }
