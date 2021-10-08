@@ -3,7 +3,7 @@
   <h1 class="h5 text-primary">{{viewTitle}}</h1>
   <hr class="line-divider"/>
 
-  <form #transferForm="ngForm" (submit)="transferFunds()">
+  <form #transferForm="ngForm" (submit)="transferFunds()" *ngSwitchCase="'quick'">
     <div class="d-flex my-2">
       <div class="flex-grow-1 mx-2">
         <div class="form-floating">

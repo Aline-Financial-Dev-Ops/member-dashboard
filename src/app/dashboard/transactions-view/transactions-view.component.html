@@ -130,6 +130,7 @@
   </div>
   <div class="d-flex justify-content-center align-items-center mt-2">
     <ngb-pagination [pageSize]="pageSize"
+                    [maxSize]="2"
                     [collectionSize]="totalElements"
                     (pageChange)="loadPage($event)"></ngb-pagination>
   </div>

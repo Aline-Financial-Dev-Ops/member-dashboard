@@ -2,7 +2,7 @@
 
   <!-- Full Account View -->
   <div *ngSwitchCase="'full'" class="d-flex justify-content-center align-items-center flex-column p-3 my-2">
-    <div class="font-noto-sans fw-bold d-flex justify-content-center align-items-center">
+    <div class="font-noto-sans fw-bold d-flex justify-content-center align-items-center text-center">
       {{account | accountLabel: accountNumberVisible}}
       <button class="btn shadow-none text-muted" [ngbTooltip]="accountNumberVisible ? 'Hide account number' : 'Show account number'" placement="top">
         <fa-icon [icon]="eyeIcon" (click)="toggleVisible()"></fa-icon>
