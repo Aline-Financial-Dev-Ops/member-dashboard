@@ -14,7 +14,9 @@
       </div>
     </div>
     <div class="col">
-      <app-transfer-funds-view mode="quick" viewTitle="Quick Transfer"></app-transfer-funds-view>
+      <app-transfer-funds-view mode="quick"
+                               [accounts]="accounts!"
+                               viewTitle="Quick Transfer"></app-transfer-funds-view>
     </div>
   </div>
   <app-transactions-view mode="MEMBER" viewTitle="My Transactions"></app-transactions-view>

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {AccountResponse} from "@core/models/account-response.model";
 
 export type TransferFundsViewMode = 'quick' | 'account' | 'full';
 
@@ -14,6 +15,9 @@ export class TransferFundsViewComponent implements OnInit {
 
   @Input()
   viewTitle = 'Transfer Money';
+
+  @Input()
+  accounts: AccountResponse[] = [];
 
   transferAmount = 0;
 
