@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AccountResponse} from "@core/models/account-response.model";
 
 export type TransferFundsViewMode = 'quick' | 'account' | 'full';
@@ -8,7 +8,7 @@ export type TransferFundsViewMode = 'quick' | 'account' | 'full';
   templateUrl: './transfer-funds-view.component.html',
   styleUrls: ['./transfer-funds-view.component.sass']
 })
-export class TransferFundsViewComponent implements OnInit {
+export class TransferFundsViewComponent {
 
   @Input()
   mode!: TransferFundsViewMode;
@@ -26,7 +26,7 @@ export class TransferFundsViewComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  transferFunds() {
 
   }
 
