@@ -18,6 +18,10 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadAccounts();
+  }
+
+  loadAccounts() {
     this.authService.currentUser.subscribe(
       user => {
         if (user) {

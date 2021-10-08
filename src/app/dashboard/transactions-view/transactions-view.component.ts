@@ -80,7 +80,7 @@ export class TransactionsViewComponent implements OnInit {
     this.loadPage(this.currentPage);
   }
 
-  loadPage(currentPage: number) {
+  loadPage(currentPage: number = this.currentPage) {
     this.currentPage = currentPage;
     this.loaded = false;
     switch (this.mode) {

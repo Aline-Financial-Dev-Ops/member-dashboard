@@ -16,12 +16,14 @@
     <div class="col">
       <ng-container *ngIf="accounts">
         <app-transfer-funds-view mode="quick"
+                                 [transactionsView]="transactionsView"
                                  [accounts]="accounts"
+                                 (reloadAccounts)="loadAccounts()"
                                  viewTitle="Quick Transfer"></app-transfer-funds-view>
       </ng-container>
     </div>
   </div>
-  <app-transactions-view mode="MEMBER" viewTitle="My Transactions"></app-transactions-view>
+  <app-transactions-view #transactionsView mode="MEMBER" viewTitle="My Transactions"></app-transactions-view>
 </div>
 
 <ng-template #loading>
