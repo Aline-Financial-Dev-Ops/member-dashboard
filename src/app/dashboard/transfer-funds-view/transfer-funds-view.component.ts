@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {AccountResponse} from "@core/models/account-response.model";
+import {AccountResponse} from '@core/models/account-response.model';
+import {TransferFundsRequest} from '@core/models/transfer-funds-request.model';
+import {TransactionService} from '@core/services/transaction.service';
 
 export type TransferFundsViewMode = 'quick' | 'account' | 'full';
 
@@ -22,12 +24,28 @@ export class TransferFundsViewComponent {
   transferAmount = 0;
   fromAccount?: AccountResponse;
   toAccount?: AccountResponse;
+  memo = '';
 
-  constructor() {
+  constructor(private service: TransactionService) {
+  }
+
+  switchAccounts() {
+    const temp = this.fromAccount;
+    this.fromAccount = this.toAccount;
+    this.toAccount = temp;
   }
 
   transferFunds() {
-
+    const request: TransferFundsRequest = {
+      fromAccountNumber: this.fromAccount!.accountNumber,
+      toAccountNumber: this.toAccount!.accountNumber,
+      amount: this.transferAmount * 100,
+      memo: this.mode == 'quick' ? 'QUICK TRANSFER' : this.memo
+    };
+    this.service.transferFunds(request)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
 }

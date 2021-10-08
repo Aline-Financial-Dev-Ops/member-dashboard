@@ -7,6 +7,7 @@ import {TransactionsPage} from '@core/models/transactions-page.model';
 import {PageParams} from '@core/models/paginated-response.model';
 import {map} from 'rxjs/operators';
 import {TransactionMethod, TransactionStatus, TransactionType} from '@core/models/transaction.model';
+import {TransferFundsRequest} from '@core/models/transfer-funds-request.model';
 
 @Injectable({
   providedIn: CoreModule
@@ -27,6 +28,10 @@ export class TransactionService extends BaseHttpService {
     return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`),
       {params})
       .pipe(this.transactionPipe());
+  }
+
+  transferFunds(request: TransferFundsRequest) {
+    return this.client.post(this.getApi('/transactions/transfer'), request);
   }
 
   /**
