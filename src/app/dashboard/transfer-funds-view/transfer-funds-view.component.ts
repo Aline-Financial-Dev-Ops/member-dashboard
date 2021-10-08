@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AccountResponse} from '@core/models/account-response.model';
 import {TransferFundsRequest} from '@core/models/transfer-funds-request.model';
 import {TransactionsViewComponent} from '@dashboard/transactions-view/transactions-view.component';
+import {TransactionService} from '@core/services/transaction.service';
 
 export type TransferFundsViewMode = 'quick' | 'account' | 'full';
 
@@ -32,7 +33,9 @@ export class TransferFundsViewComponent {
   @Output()
   reloadAccounts = new EventEmitter<any>();
 
-  constructor() {
+  transferring = false;
+
+  constructor(private service: TransactionService) {
   }
 
   switchAccounts() {
@@ -48,13 +51,13 @@ export class TransferFundsViewComponent {
       amount: this.transferAmount * 100,
       memo: this.mode == 'quick' ? 'QUICK TRANSFER' : this.memo
     };
-    console.log(request);
-    // this.service.transferFunds(request)
-    //   .subscribe(() => {
-    //     this.resetFields();
-    //     this.refreshTransactionsComponent();
-    //     this.reloadAccounts.emit();
-    //   });
+    this.transferring = true;
+    this.service.transferFunds(request)
+      .subscribe(() => {
+        this.resetFields();
+        this.refreshTransactionsComponent();
+        this.reloadAccounts.emit();
+      });
   }
 
   transferAmountTooMuch() {
@@ -67,6 +70,7 @@ export class TransferFundsViewComponent {
     this.transferAmount = 0;
     this.fromAccount = undefined;
     this.toAccount = undefined;
+    this.transferring = false;
   }
 
   refreshTransactionsComponent() {
