@@ -50,6 +50,7 @@ export class TransactionsViewComponent implements OnInit {
     this.totalElements = page.totalElements;
     this.totalPages = page.totalPages;
     this.loaded = true;
+    console.table(this.transactions);
   }
 
   /**

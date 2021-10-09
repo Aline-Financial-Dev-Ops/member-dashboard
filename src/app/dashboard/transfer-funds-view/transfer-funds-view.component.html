@@ -1,73 +1,83 @@
-<div [ngSwitch]="mode" class="container border rounded-3 p-3 shadow-sm mb-4 position-relative">
-
-  <h1 class="h5 text-primary">{{viewTitle}}</h1>
-  <hr class="line-divider"/>
-
-  <form #transferForm="ngForm" (submit)="transferFunds()" *ngSwitchCase="'quick'">
-    <div class="d-flex my-2">
-      <div class="flex-grow-1 mx-2">
-        <div class="form-floating">
-          <select id="fromAccount"
-                  required
-                  name="fromAccount"
-                  class="form-select"
-                  [disabled]="transferring"
-                  [(ngModel)]="fromAccount">
-            <option [ngValue]="undefined">--</option>
-            <ng-container *ngFor="let account of accounts">
-              <option [ngValue]="account" *ngIf="account !== toAccount">
-                {{account | accountLabel}}
-              </option>
-            </ng-container>
-          </select>
-          <label class="form-label" for="fromAccount">From</label>
+<form #transferForm="ngForm" (submit)="transferFunds()">
+  <div class="container border rounded-3 p-3 shadow-sm mb-4 position-relative">
+    <h1 class="h5 text-primary">{{viewTitle}}</h1>
+    <hr class="line-divider"/>
+<!--    Quick Transfer-->
+      <div class="d-flex my-2">
+        <div class="flex-grow-1 mx-2">
+          <div class="form-floating">
+            <select id="fromAccount"
+                    required
+                    name="fromAccount"
+                    class="form-select"
+                    [disabled]="transferring"
+                    [(ngModel)]="fromAccount">
+              <option [ngValue]="undefined">--</option>
+              <ng-container *ngFor="let account of accounts">
+                <option [ngValue]="account" *ngIf="account !== toAccount">
+                  {{account | accountLabel: false : true}}
+                </option>
+              </ng-container>
+            </select>
+            <label class="form-label" for="fromAccount">From</label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+          <button type="button" class="btn btn-outline-primary rounded-circle" (click)="switchAccounts()" [disabled]="transferring">
+            <fa-icon icon="exchange-alt"></fa-icon>
+          </button>
+        </div>
+        <div class="flex-grow-1 mx-2">
+          <div class="form-floating">
+            <select id="toAccount"
+                    name="toAccount"
+                    class="form-select"
+                    required
+                    [disabled]="transferring"
+                    [(ngModel)]="toAccount">
+              <option [ngValue]="undefined">--</option>
+              <ng-container *ngFor="let account of accounts">
+                <option [ngValue]="account" *ngIf="account !== fromAccount">
+                  {{account | accountLabel: false : true}}
+                </option>
+              </ng-container>
+            </select>
+            <label class="form-label" for="toAccount">To</label>
+          </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="btn btn-outline-primary rounded-circle" (click)="switchAccounts()" [disabled]="transferring">
-          <fa-icon icon="exchange-alt"></fa-icon>
+
+      <div class="text-center py-2">
+        <input class="transfer-amount animate__animated d-inline-block"
+               [disabled]="transferring"
+               name="amount"
+               currencyMask
+               required
+               [ngClass]="{'text-danger': transferAmountTooMuch(), 'animate__headShake': transferAmountTooMuch()}"
+               [(ngModel)]="transferAmount"/>
+      </div>
+
+      <div class="py-2" *ngIf="mode!=='quick'">
+        <div class="form-floating">
+          <textarea class="form-control"
+                    name="memo"
+                    id="memo"
+                    placeholder="Memo"
+                    [(ngModel)]="memo"></textarea>
+          <label class="form-label" for="memo">Memo</label>
+          <span class="form-status">{{memo.length}}/250</span>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit"
+                [disabled]="transferForm.invalid || transferForm.errors || transferAmount < 0.01 || transferAmountTooMuch() || transferring"
+                class="btn w-100 btn-primary">
+          <span *ngIf="!transferring; else loading">Transfer</span>
         </button>
       </div>
-      <div class="flex-grow-1 mx-2">
-        <div class="form-floating">
-          <select id="toAccount"
-                  name="toAccount"
-                  class="form-select"
-                  required
-                  [disabled]="transferring"
-                  [(ngModel)]="toAccount">
-            <option [ngValue]="undefined">--</option>
-            <ng-container *ngFor="let account of accounts">
-              <option [ngValue]="account" *ngIf="account !== fromAccount">
-                {{account | accountLabel}}
-              </option>
-            </ng-container>
-          </select>
-          <label class="form-label" for="toAccount">To</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center py-2">
-      <input class="transfer-amount animate__animated d-inline-block"
-             [disabled]="transferring"
-             name="amount"
-             currencyMask
-             required
-             [ngClass]="{'text-danger': transferAmountTooMuch(), 'animate__headShake': transferAmountTooMuch()}"
-             [(ngModel)]="transferAmount"/>
-    </div>
-
-    <div class="text-center">
-      <button type="submit"
-              [disabled]="transferForm.invalid || transferForm.errors || transferAmount < 0.01 || transferAmountTooMuch() || transferring"
-              class="btn w-100 btn-primary">
-        <span *ngIf="!transferring; else loading">Transfer</span>
-      </button>
-    </div>
-  </form>
-
-</div>
+  </div>
+</form>
 
 <ng-template #loading>
   <div class="spinner-border spinner-border-sm text-light"></div>

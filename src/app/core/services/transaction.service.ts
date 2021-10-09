@@ -25,6 +25,7 @@ export class TransactionService extends BaseHttpService {
   }
 
   getTransactionsByAccountId(accountId: number, params: PageParams = {sort: ['date,desc']}): Observable<TransactionsPage> {
+
     return this.client.get<TransactionsPage>(this.getApi(`/accounts/${accountId}/transactions`),
       {params})
       .pipe(this.transactionPipe());

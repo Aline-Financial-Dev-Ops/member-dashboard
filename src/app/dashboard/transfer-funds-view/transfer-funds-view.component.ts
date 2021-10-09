@@ -74,7 +74,6 @@ export class TransferFundsViewComponent {
   }
 
   refreshTransactionsComponent() {
-    console.log('Refresh transactions...');
     this.transactionsView?.loadPage();
   }
 

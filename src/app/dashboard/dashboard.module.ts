@@ -27,6 +27,7 @@ import {SearchTransactionsComponent} from './transactions-view/search-transactio
 import {TransferFundsViewComponent} from './transfer-funds-view/transfer-funds-view.component';
 import {AppMaskModule} from '@app/app-mask.module';
 import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
+import {TransferFundsPageComponent} from './transfer-funds-page/transfer-funds-page.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
     TransactionRowComponent,
     TransactionsTableComponent,
     SearchTransactionsComponent,
-    TransferFundsViewComponent
+    TransferFundsViewComponent,
+    TransferFundsPageComponent
   ],
   imports: [
     CommonModule,
