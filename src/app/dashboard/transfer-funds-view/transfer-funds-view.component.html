@@ -59,9 +59,10 @@
 
       <div class="py-2" *ngIf="mode!=='quick'">
         <div class="form-floating">
-          <textarea class="form-control"
+          <textarea class="form-control h-100"
                     name="memo"
                     id="memo"
+                    rows="3"
                     placeholder="Memo"
                     [(ngModel)]="memo"></textarea>
           <label class="form-label" for="memo">Memo</label>
