@@ -1,10 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild, ViewRef} from '@angular/core';
 import {AccountResponse} from '@core/models/account-response.model';
 import {TransferFundsRequest} from '@core/models/transfer-funds-request.model';
 import {TransactionsViewComponent} from '@dashboard/transactions-view/transactions-view.component';
 import {TransactionService} from '@core/services/transaction.service';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 export type TransferFundsViewMode = 'quick' | 'account' | 'full';
+export type SelectedAccounts = {
+  fromAccount?: AccountResponse,
+  toAccount?: AccountResponse
+};
 
 @Component({
   selector: 'app-transfer-funds-view',
@@ -20,7 +25,13 @@ export class TransferFundsViewComponent {
   viewTitle = 'Transfer Money';
 
   @Input()
-  accounts!: AccountResponse[]
+  accounts!: AccountResponse[];
+
+  @ViewChild('transferModal')
+  modalContent!: ViewRef;
+
+  @ViewChild('sendTransferModal')
+  successModalContent!: ViewRef;
 
   transferAmount = 0;
   fromAccount?: AccountResponse;
@@ -33,18 +44,28 @@ export class TransferFundsViewComponent {
   @Output()
   reloadAccounts = new EventEmitter<any>();
 
+  @Output()
+  selectAccounts = new EventEmitter<SelectedAccounts>();
+
   transferring = false;
 
-  constructor(private service: TransactionService) {
+  constructor(private service: TransactionService,
+              private modalService: NgbModal) {
   }
 
   switchAccounts() {
     const temp = this.fromAccount;
     this.fromAccount = this.toAccount;
     this.toAccount = temp;
+    this.onSelectAccounts();
   }
 
   transferFunds() {
+    this.openModal(this.modalContent);
+  }
+
+  sendTransferRequests(modal: NgbModalRef) {
+    modal.close();
     const request: TransferFundsRequest = {
       fromAccountNumber: this.fromAccount!.accountNumber,
       toAccountNumber: this.toAccount!.accountNumber,
@@ -57,6 +78,7 @@ export class TransferFundsViewComponent {
         this.resetFields();
         this.refreshTransactionsComponent();
         this.reloadAccounts.emit();
+        this.modalService.open(this.successModalContent, {centered: true});
       });
   }
 
@@ -75,6 +97,19 @@ export class TransferFundsViewComponent {
 
   refreshTransactionsComponent() {
     this.transactionsView?.loadPage();
+  }
+
+  onSelectAccounts() {
+    this.selectAccounts.emit({
+      fromAccount: this.fromAccount,
+      toAccount: this.toAccount
+    });
+  }
+
+  openModal(content: any) {
+    return this.modalService.open(content, {
+      centered: true
+    });
   }
 
 }

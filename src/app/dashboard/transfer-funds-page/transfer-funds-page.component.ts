@@ -3,6 +3,7 @@ import {DashboardRoutingService} from '@dashboard/dashboard-routing.service';
 import {AccountService} from '@core/services/account.service';
 import {AccountResponse} from '@core/models/account-response.model';
 import {AuthService} from '@core/services/auth.service';
+import {SelectedAccounts} from '../transfer-funds-view/transfer-funds-view.component';
 
 @Component({
   selector: 'app-transfer-funds-page',
@@ -11,6 +12,7 @@ import {AuthService} from '@core/services/auth.service';
 })
 export class TransferFundsPageComponent implements OnInit {
 
+  selectedAccounts?: SelectedAccounts;
   accounts!: AccountResponse[];
 
   constructor(private routeService: DashboardRoutingService,
@@ -39,6 +41,11 @@ export class TransferFundsPageComponent implements OnInit {
         }
       }
     );
+  }
+
+  onSelectAccounts(accounts: SelectedAccounts) {
+    console.log(accounts);
+    this.selectedAccounts = accounts;
   }
 
 }
