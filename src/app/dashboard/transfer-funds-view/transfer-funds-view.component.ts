@@ -27,6 +27,9 @@ export class TransferFundsViewComponent {
   @Input()
   accounts!: AccountResponse[];
 
+  @Input()
+  resetOnTransfer = true;
+
   @ViewChild('transferModal')
   modalContent!: ViewRef;
 
@@ -75,7 +78,9 @@ export class TransferFundsViewComponent {
     this.transferring = true;
     this.service.transferFunds(request)
       .subscribe(() => {
-        this.resetFields();
+        this.onSelectAccounts();
+        if (this.resetOnTransfer) this.resetFields();
+        this.transferring = false;
         this.refreshTransactionsComponent();
         this.reloadAccounts.emit();
         this.modalService.open(this.successModalContent, {centered: true});
@@ -92,7 +97,6 @@ export class TransferFundsViewComponent {
     this.transferAmount = 0;
     this.fromAccount = undefined;
     this.toAccount = undefined;
-    this.transferring = false;
   }
 
   refreshTransactionsComponent() {

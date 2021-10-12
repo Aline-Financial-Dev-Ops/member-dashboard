@@ -12,7 +12,8 @@ import {SelectedAccounts} from '../transfer-funds-view/transfer-funds-view.compo
 })
 export class TransferFundsPageComponent implements OnInit {
 
-  selectedAccounts?: SelectedAccounts;
+  fromAccount?: AccountResponse;
+  toAccount?: AccountResponse;
   accounts!: AccountResponse[];
 
   constructor(private routeService: DashboardRoutingService,
@@ -35,6 +36,15 @@ export class TransferFundsPageComponent implements OnInit {
             accounts => {
               if (accounts) {
                 this.accounts = accounts.content;
+                if (this.fromAccount) {
+                  const fromAccountNumber = this.fromAccount.accountNumber;
+                  this.fromAccount = this.accounts.filter(account => account.accountNumber === fromAccountNumber)[0];
+                }
+
+                if (this.toAccount) {
+                  const toAccountNumber = this.toAccount.accountNumber;
+                  this.toAccount = this.accounts.filter(account => account.accountNumber === toAccountNumber)[0];
+                }
               }
             }
           );
@@ -43,9 +53,9 @@ export class TransferFundsPageComponent implements OnInit {
     );
   }
 
-  onSelectAccounts(accounts: SelectedAccounts) {
-    console.log(accounts);
-    this.selectedAccounts = accounts;
+  onSelectAccounts({fromAccount, toAccount}: SelectedAccounts) {
+    this.fromAccount = fromAccount;
+    this.toAccount = toAccount;
   }
 
 }

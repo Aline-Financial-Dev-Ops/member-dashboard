@@ -66,6 +66,7 @@
                     id="memo"
                     rows="3"
                     placeholder="Memo"
+                    [maxLength]="250"
                     [(ngModel)]="memo"></textarea>
           <label class="form-label" for="memo">Memo</label>
           <span class="form-status">{{memo.length}}/250</span>
@@ -100,13 +101,14 @@
       </div>
       <div class="text-center my-4 font-noto-sans">
         Would you like to transfer <span class="text-success font-montserrat">{{transferAmount | currency}}</span> from
+        <br/>
         <span class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{fromAccount! | accountLabel}}</span> to
         <span class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{toAccount! | accountLabel}}</span>?
       </div>
     </div>
     <div class="modal-footer justify-content-around">
       <button type="button" class="btn btn-outline-primary rounded-pill" aria-label="Close" (click)="sendTransferRequests(modal)">
-        Confirm Transfer
+        Confirm
       </button>
       <button type="button" class="btn btn-outline-danger rounded-pill" aria-label="Close" (click)="modal.dismiss()">
         Cancel
@@ -122,10 +124,10 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
       </div>
       <div class="text-center animate__animated animate__zoomIn animate__faster">
-        <fa-icon icon="check-circle" size="4x" class="text-success"></fa-icon>
+        <fa-icon icon="check-circle" size="5x" class="text-success"></fa-icon>
       </div>
       <div class="text-center my-3">
-        <h3 class="h4 fw-bold">Transfer Funds Successful!</h3>
+        <div class="h3">Transfer Funds Successful!</div>
       </div>
     </div>
     <div class="modal-footer justify-content-around">
