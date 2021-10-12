@@ -15,9 +15,11 @@
                     (ngModelChange)="onSelectAccounts()">
               <option [ngValue]="undefined">--</option>
               <ng-container *ngFor="let account of accounts">
-                <option [ngValue]="account" *ngIf="account !== toAccount">
-                  {{account | accountLabel: false : true}}
-                </option>
+                <ng-container *ngIf="account !== toAccount">
+                  <option [ngValue]="account">
+                    {{account | accountLabel: false : true}}
+                  </option>
+                </ng-container>
               </ng-container>
             </select>
             <label class="form-label" for="fromAccount">From</label>
@@ -39,9 +41,11 @@
                     (ngModelChange)="onSelectAccounts()">
               <option [ngValue]="undefined">--</option>
               <ng-container *ngFor="let account of accounts">
-                <option [ngValue]="account" *ngIf="account !== fromAccount">
-                  {{account | accountLabel: false : true}}
-                </option>
+                <ng-container *ngIf="account !== fromAccount">
+                  <option [ngValue]="account">
+                    {{account | accountLabel: false : true}}
+                  </option>
+                </ng-container>
               </ng-container>
             </select>
             <label class="form-label" for="toAccount">To</label>
@@ -102,8 +106,8 @@
       <div class="text-center my-4 font-noto-sans">
         Would you like to transfer <span class="text-success font-montserrat">{{transferAmount | currency}}</span> from
         <br/>
-        <span class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{fromAccount! | accountLabel}}</span> to
-        <span class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{toAccount! | accountLabel}}</span>?
+        <span *ngIf="fromAccount" class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{fromAccount! | accountLabel}}</span> to
+        <span *ngIf="toAccount" class="text-primary d-inline-flex justify-content-center align-items-center p-2 mx-1 rounded bg-light border">{{toAccount! | accountLabel}}</span>?
       </div>
     </div>
     <div class="modal-footer justify-content-around">

@@ -75,15 +75,15 @@ export class TransferFundsViewComponent {
       amount: this.transferAmount * 100,
       memo: this.mode == 'quick' ? 'QUICK TRANSFER' : this.memo
     };
-    this.transferring = true;
+    this.transferring = false;
     this.service.transferFunds(request)
       .subscribe(() => {
-        this.onSelectAccounts();
-        if (this.resetOnTransfer) this.resetFields();
         this.transferring = false;
         this.refreshTransactionsComponent();
-        this.reloadAccounts.emit();
         this.modalService.open(this.successModalContent, {centered: true});
+        this.reloadAccounts.emit();
+        this.onSelectAccounts();
+        this.resetFields();
       });
   }
 
