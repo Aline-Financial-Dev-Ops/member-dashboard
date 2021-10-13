@@ -3,11 +3,14 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
-  EventEmitter, Inject,
-  Input, OnChanges,
+  EventEmitter,
+  Inject,
+  Input,
+  OnChanges,
   OnInit,
   Output,
-  Renderer2, SimpleChanges,
+  Renderer2,
+  SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
 import {SingleCharInputComponent} from '@core/components/single-char-input/single-char-input.component';

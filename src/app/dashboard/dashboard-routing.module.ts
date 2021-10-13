@@ -7,6 +7,7 @@ import {AuthGuard} from '@core/guards/auth.guard';
 import {NotFoundComponent} from '@app/not-found/not-found.component';
 import {AccountPageComponent} from '@dashboard/account-page/account-page.component';
 import {DashboardRoutingService} from '@dashboard/dashboard-routing.service';
+import {TransferFundsPageComponent} from '@dashboard/transfer-funds-page/transfer-funds-page.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
         data: {
           animationState: 'viewAccount'
         }
+      },
+      {
+        path: 'transfer-funds',
+        component: TransferFundsPageComponent
       },
       {
         path: '**',

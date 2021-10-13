@@ -67,6 +67,11 @@ export class DashboardNavComponent implements OnInit {
         isTab: false
       },
       {
+        route: './transfer-funds',
+        label: 'Transfer Money',
+        isTab: false
+      },
+      {
         route: './locations',
         label: 'Locations',
         isTab: false

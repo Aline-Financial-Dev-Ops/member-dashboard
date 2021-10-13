@@ -23,7 +23,12 @@ import {SortToggleComponent} from './transactions-view/sort-toggle/sort-toggle.c
 import {FormsModule} from '@angular/forms';
 import {TransactionRowComponent} from './transactions-view/transaction-row/transaction-row.component';
 import {TransactionsTableComponent} from './transactions-view/transactions-table/transactions-table.component';
-import { SearchTransactionsComponent } from './transactions-view/search-transactions/search-transactions.component';
+import {SearchTransactionsComponent} from './transactions-view/search-transactions/search-transactions.component';
+import {TransferFundsViewComponent} from './transfer-funds-view/transfer-funds-view.component';
+import {AppMaskModule} from '@app/app-mask.module';
+import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
+import {TransferFundsPageComponent} from './transfer-funds-page/transfer-funds-page.component';
+import {BreakpointDetectorComponent} from '@dashboard/breakpoint-detector/breakpoint-detector.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,10 @@ import { SearchTransactionsComponent } from './transactions-view/search-transact
     SortToggleComponent,
     TransactionRowComponent,
     TransactionsTableComponent,
-    SearchTransactionsComponent
+    SearchTransactionsComponent,
+    TransferFundsViewComponent,
+    TransferFundsPageComponent,
+    BreakpointDetectorComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +63,9 @@ import { SearchTransactionsComponent } from './transactions-view/search-transact
     NgbTooltipModule,
     NgbPaginationModule,
     NgbButtonsModule,
-    FormsModule
+    FormsModule,
+    AppMaskModule,
+    AppCurrencyMaskModule
   ]
 })
 export class DashboardModule {}

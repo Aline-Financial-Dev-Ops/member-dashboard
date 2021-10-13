@@ -15,7 +15,10 @@ export class AccountViewComponent {
   viewType: AccountViewType = 'full';
 
   @Input()
-  account!: AccountResponse;
+  account?: AccountResponse;
+
+  @Input()
+  emptyMessage = 'No account to view.';
 
   @Input()
   link = false;
