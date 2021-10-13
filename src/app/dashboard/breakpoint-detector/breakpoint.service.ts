@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {SCREEN_SIZE} from '@dashboard/breakpoint-detector/screen-size';
+import {ScreenSize} from '@dashboard/breakpoint-detector/screen-size';
 import {distinctUntilChanged} from 'rxjs/operators';
 
 @Injectable({
@@ -8,17 +8,17 @@ import {distinctUntilChanged} from 'rxjs/operators';
 })
 export class BreakpointService {
 
-  private resizeSubject: Subject<SCREEN_SIZE>;
+  private resizeSubject: Subject<ScreenSize>;
 
   constructor() {
-    this.resizeSubject = new Subject<SCREEN_SIZE>();
+    this.resizeSubject = new Subject<ScreenSize>();
   }
 
-  get onResize$(): Observable<SCREEN_SIZE> {
+  get onResize$(): Observable<ScreenSize> {
     return this.resizeSubject.asObservable().pipe(distinctUntilChanged());
   }
 
-  onResize(size: SCREEN_SIZE) {
+  onResize(size: ScreenSize) {
     this.resizeSubject.next(size);
   }
 

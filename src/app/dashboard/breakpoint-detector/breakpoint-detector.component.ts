@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, HostListener} from '@angular/core';
 import {BreakpointService} from '@dashboard/breakpoint-detector/breakpoint.service';
-import {SCREEN_SIZE} from '@dashboard/breakpoint-detector/screen-size';
+import {ScreenSize} from '@dashboard/breakpoint-detector/screen-size';
 
 @Component({
   template: '',
@@ -14,17 +14,17 @@ export class BreakpointDetectorComponent implements AfterViewInit {
   onResize() {
     const width = window.innerWidth;
     if (width < 576) {
-      this.service.onResize(SCREEN_SIZE.XS);
+      this.service.onResize(ScreenSize.XS);
     } else if (width < 768) {
-      this.service.onResize(SCREEN_SIZE.SM);
+      this.service.onResize(ScreenSize.SM);
     } else if (width < 992) {
-      this.service.onResize(SCREEN_SIZE.MD);
+      this.service.onResize(ScreenSize.MD);
     } else if (width < 1200) {
-      this.service.onResize(SCREEN_SIZE.LG);
+      this.service.onResize(ScreenSize.LG);
     } else if (width < 1400) {
-      this.service.onResize(SCREEN_SIZE.XL);
+      this.service.onResize(ScreenSize.XL);
     } else {
-      this.service.onResize(SCREEN_SIZE.XXL);
+      this.service.onResize(ScreenSize.XXL);
     }
   }
 
