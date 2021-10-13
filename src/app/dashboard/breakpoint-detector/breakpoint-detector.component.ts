@@ -14,7 +14,6 @@ export class BreakpointDetectorComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize() {
     const width = window.innerWidth;
-    console.log('Resizing', width);
     if (width < 576) {
       this.service.onResize(SCREEN_SIZE.XS);
     } else if (width < 768) {
