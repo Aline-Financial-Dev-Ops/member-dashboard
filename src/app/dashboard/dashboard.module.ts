@@ -28,6 +28,7 @@ import {TransferFundsViewComponent} from './transfer-funds-view/transfer-funds-v
 import {AppMaskModule} from '@app/app-mask.module';
 import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
 import {TransferFundsPageComponent} from './transfer-funds-page/transfer-funds-page.component';
+import {BreakpointDetectorComponent} from '@dashboard/breakpoint-detector/breakpoint-detector.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {TransferFundsPageComponent} from './transfer-funds-page/transfer-funds-p
     TransactionsTableComponent,
     SearchTransactionsComponent,
     TransferFundsViewComponent,
-    TransferFundsPageComponent
+    TransferFundsPageComponent,
+    BreakpointDetectorComponent
   ],
   imports: [
     CommonModule,

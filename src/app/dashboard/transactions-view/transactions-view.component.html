@@ -130,7 +130,7 @@
   </div>
   <div class="d-flex justify-content-center align-items-center mt-2">
     <ngb-pagination [pageSize]="pageSize"
-                    [maxSize]="5"
+                    [maxSize]="maxPaginationSize"
                     [collectionSize]="totalElements"
                     (pageChange)="loadPage($event)"></ngb-pagination>
   </div>
@@ -154,3 +154,5 @@
     </div>
   </div>
 </ng-template>
+
+<app-breakpoint-detector></app-breakpoint-detector>

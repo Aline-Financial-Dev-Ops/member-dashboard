@@ -6,6 +6,8 @@ import {TransactionsPage} from '@core/models/transactions-page.model';
 import {SortValue} from '@dashboard/transactions-view/sort-toggle/sort-toggle.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PageParams} from '@core/models/paginated-response.model';
+import {BreakpointService} from '@dashboard/breakpoint-detector/breakpoint.service';
+import {SCREEN_SIZE} from '@dashboard/breakpoint-detector/screen-size';
 
 export type TransactionsViewMode = 'MEMBER' | 'ACCOUNT';
 
@@ -31,14 +33,36 @@ export class TransactionsViewComponent implements OnInit {
   loaded = false;
   currentPage = 1;
   searchTerms: string[] = [];
+  maxPaginationSize = 3;
 
   constructor(private authService: AuthService,
               private transactionService: TransactionService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private breakpointService: BreakpointService) {
+    this.checkSize();
   }
 
   ngOnInit() {
     this.loadPage(1);
+    this.checkSize();
+  }
+
+  checkSize() {
+    this.breakpointService.onResize$.subscribe(size => {
+      switch (size) {
+        case SCREEN_SIZE.SM:
+          this.maxPaginationSize = 2;
+          break;
+        case SCREEN_SIZE.MD:
+          this.maxPaginationSize = 5;
+          break;
+        case SCREEN_SIZE.LG:
+        case SCREEN_SIZE.XL:
+        case SCREEN_SIZE.XXL:
+          this.maxPaginationSize = 10;
+          break;
+      }
+    });
   }
 
   /**
