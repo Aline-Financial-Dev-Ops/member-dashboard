@@ -3,9 +3,8 @@ import {BreakpointService} from '@dashboard/breakpoint-detector/breakpoint.servi
 import {SCREEN_SIZE} from '@dashboard/breakpoint-detector/screen-size';
 
 @Component({
-  selector: 'app-breakpoint-detector',
-  templateUrl: './breakpoint-detector.component.html',
-  styleUrls: ['./breakpoint-detector.component.sass']
+  template: '',
+  selector: 'app-breakpoint-detector'
 })
 export class BreakpointDetectorComponent implements AfterViewInit {
 

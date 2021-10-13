@@ -19,12 +19,12 @@
       <tbody>
         <tr>
           <th>Date: </th>
-          <td>{{transaction.date | date: 'MM/dd/yyyy'}}</td>
+          <td>{{transaction.date | date: 'MM/dd/yyyy hh:mm a'}}</td>
         </tr>
         <tr>
           <th>Type: </th>
           <td>
-            {{transaction | transactionEnum: 'type'}}
+            <span class="text-info">{{transaction | transactionEnum: 'type'}}</span>
           </td>
         </tr>
         <tr>
