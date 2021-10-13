@@ -1,4 +1,4 @@
-export enum SCREEN_SIZE {
+export enum ScreenSize {
   XS,
   SM,
   MD,
