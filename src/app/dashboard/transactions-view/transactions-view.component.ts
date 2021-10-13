@@ -50,6 +50,7 @@ export class TransactionsViewComponent implements OnInit {
   checkSize() {
     this.breakpointService.onResize$.subscribe(size => {
       switch (size) {
+        case SCREEN_SIZE.XS:
         case SCREEN_SIZE.SM:
           this.maxPaginationSize = 2;
           break;
