@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidatorFunctions} from '@core/validators/validator-functions';
+import {CardService} from '@core/services/card.service';
+import {ActivateCardRequest} from '@core/models/activate-card-request.model';
 
 @Component({
   selector: 'app-activate-card-form',
@@ -10,10 +12,14 @@ import {ValidatorFunctions} from '@core/validators/validator-functions';
 export class ActivateCardFormComponent implements OnInit {
 
   activateCardForm!: FormGroup;
+  errorMessage?: string;
+  loading = true;
+  activated = false;
 
-  constructor() { }
+  constructor(private cardService: CardService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     const {cardNumberValidator} = ValidatorFunctions;
     this.activateCardForm = new FormGroup({
       cardNumber: new FormControl('', [
@@ -29,7 +35,7 @@ export class ActivateCardFormComponent implements OnInit {
       ]),
       expirationDate: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\d{2}\/\d{2}$/g)
+        Validators.pattern(/^\d{2}\/\d{4}$/g)
       ]),
       dateOfBirth: new FormControl('', [
         Validators.required,
@@ -44,7 +50,28 @@ export class ActivateCardFormComponent implements OnInit {
   }
 
   activateCard() {
-    console.log("Activating card...");
+    this.loading = true;
+    const request: ActivateCardRequest = {...this.activateCardForm.value};
+    const expDateStr = this.activateCardForm.value.expirationDate;
+    const dob = this.activateCardForm.value.dateOfBirth;
+    const expDateArr: string[] = expDateStr.split('/');
+    const month = parseInt(expDateArr[0]) - 1;
+    const year = parseInt(expDateArr[1]);
+    const expDate = new Date();
+    expDate.setMonth(month);
+    expDate.setFullYear(year);
+    request.expirationDate = new Date(expDate);
+    request.dateOfBirth = new Date(dob);
+    this.cardService.activateCard(request)
+      .subscribe(
+        () => {
+          this.activated = true;
+          this.loading = false;
+        },
+        () => {
+          this.errorMessage = 'Unable activate card. Make sure the information you entered is correct and try again.';
+          this.loading = false;
+        });
   }
 
 }

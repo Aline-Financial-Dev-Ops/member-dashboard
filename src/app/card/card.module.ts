@@ -5,6 +5,8 @@ import {ActivateCardFormComponent} from './activate-card/activate-card-form/acti
 import {AppMaskModule} from '@app/app-mask.module';
 import {CoreModule} from '@core/core.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AppIconsModule} from '@app/app-icons.module';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -17,7 +19,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     AppMaskModule,
     CoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppIconsModule,
+    RouterModule
   ]
 })
 export class CardModule { }
