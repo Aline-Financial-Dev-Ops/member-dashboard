@@ -11,6 +11,7 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '@environments/environment';
+import {CardModule} from '@app/card/card.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {environment} from '@environments/environment';
         CoreModule,
         AppRoutingModule,
         LoginModule,
+        CardModule,
         RegistrationModule,
         FontAwesomeModule,
         GlobalModalModule,

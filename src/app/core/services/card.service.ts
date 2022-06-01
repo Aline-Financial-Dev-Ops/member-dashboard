@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivateCardRequest} from '@core/models/activate-card-request.model';
 import {BaseHttpService} from '@core/services/base-http.service';
-import {Observable} from "rxjs";
-import {CardResponse} from "@core/models/card-response.model";
+import {Observable} from 'rxjs';
+import {CardResponse} from '@core/models/card-response.model';
 
 @Injectable({
   providedIn: 'root'
