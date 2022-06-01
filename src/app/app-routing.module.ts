@@ -5,8 +5,11 @@ import {RegistrationComponent} from '@registration/registration.component';
 import {AppRoutingTitles} from './app-routing.titles';
 import {filter} from 'rxjs/operators';
 import {NotFoundComponent} from '@app/not-found/not-found.component';
-import {RegistrationConfirmationComponent} from '@registration/registration-confirmation/registration-confirmation.component';
+import {
+  RegistrationConfirmationComponent
+} from '@registration/registration-confirmation/registration-confirmation.component';
 import {ForgotPasswordComponent} from '@login/forgot-password/forgot-password.component';
+import {ActivateCardComponent} from '@app/card/activate-card/activate-card.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,13 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
     data: {
       title: AppRoutingTitles.FORGOT_PASSWORD
+    }
+  },
+  {
+    path: 'activate',
+    component: ActivateCardComponent,
+    data: {
+      title: AppRoutingTitles.ACTIVATE_CARD
     }
   },
   {
