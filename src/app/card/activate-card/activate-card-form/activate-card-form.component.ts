@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidatorFunctions} from '@core/validators/validator-functions';
 import {CardService} from '@core/services/card.service';
@@ -13,13 +13,12 @@ export class ActivateCardFormComponent implements OnInit {
 
   activateCardForm!: FormGroup;
   errorMessage?: string;
-  loading = true;
+  loading = false;
   activated = false;
 
   constructor(private cardService: CardService) { }
 
   ngOnInit(): void {
-    this.loading = true;
     const {cardNumberValidator} = ValidatorFunctions;
     this.activateCardForm = new FormGroup({
       cardNumber: new FormControl('', [
@@ -35,11 +34,11 @@ export class ActivateCardFormComponent implements OnInit {
       ]),
       expirationDate: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\d{2}\/\d{4}$/g)
+        Validators.pattern(/^(\d){2}\/(\d){4}$/g)
       ]),
       dateOfBirth: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/g)
+        Validators.pattern(/^(\d){2}\/(\d){2}\/(\d){4}$/g)
       ]),
       lastFourOfSSN: new FormControl('', [
         Validators.required,
@@ -59,6 +58,7 @@ export class ActivateCardFormComponent implements OnInit {
     const year = parseInt(expDateArr[1]);
     const expDate = new Date();
     expDate.setMonth(month);
+    expDate.setDate(1);
     expDate.setFullYear(year);
     request.expirationDate = new Date(expDate);
     request.dateOfBirth = new Date(dob);
