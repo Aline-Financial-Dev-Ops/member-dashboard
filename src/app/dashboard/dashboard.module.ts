@@ -29,6 +29,9 @@ import {AppMaskModule} from '@app/app-mask.module';
 import {AppCurrencyMaskModule} from '@app/app-currency-mask.module';
 import {TransferFundsPageComponent} from './transfer-funds-page/transfer-funds-page.component';
 import {BreakpointDetectorComponent} from '@dashboard/breakpoint-detector/breakpoint-detector.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { ProfileFormComponent } from './profile-form/profile-form.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import {BreakpointDetectorComponent} from '@dashboard/breakpoint-detector/breakp
     SearchTransactionsComponent,
     TransferFundsViewComponent,
     TransferFundsPageComponent,
-    BreakpointDetectorComponent
+    BreakpointDetectorComponent,
+    ProfilePageComponent,
+    ProfileFormComponent,
+    ProfileViewComponent
   ],
   imports: [
     CommonModule,

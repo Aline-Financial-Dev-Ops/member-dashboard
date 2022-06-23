@@ -8,6 +8,7 @@ import {NotFoundComponent} from '@app/not-found/not-found.component';
 import {AccountPageComponent} from '@dashboard/account-page/account-page.component';
 import {DashboardRoutingService} from '@dashboard/dashboard-routing.service';
 import {TransferFundsPageComponent} from '@dashboard/transfer-funds-page/transfer-funds-page.component';
+import {ProfilePageComponent} from '@dashboard/profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'transfer-funds',
         component: TransferFundsPageComponent
+      },
+      {
+        path: 'profile',
+        component: ProfilePageComponent
       },
       {
         path: '**',

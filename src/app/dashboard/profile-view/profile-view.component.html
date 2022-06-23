@@ -1,0 +1,19 @@
+<div class="bg-light border rounded p-3 text-dark">
+  <div *ngIf="!loading else spinner" class="d-flex col-lg-6 mx-auto">
+    <fa-layers size="6x">
+      <fa-icon icon="circle" class="text-light" transform="shrink-2"></fa-icon>
+      <fa-icon icon="user-circle" class="user-avatar text-primary"></fa-icon>
+    </fa-layers>
+    <div class="ms-2 d-flex justify-content-center align-items-start flex-column">
+      <div class="fs-3 fw-bold font-montserrat">{{fullName}}</div>
+      <div class="small font-noto-sans text-secondary">{{username}}</div>
+      <div class="small text-dark">
+        <fa-icon icon="id-card" class="me-1"></fa-icon> {{membershipId}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #spinner>
+  <span class="spinner-grow text-primary"></span>
+</ng-template>
