@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AuthService} from '@core/services/auth.service';
+import {UserProfile} from '@core/models/user-profile.model';
 
 @Component({
   selector: 'app-profile-view',
@@ -8,25 +9,13 @@ import {AuthService} from '@core/services/auth.service';
 })
 export class ProfileViewComponent implements OnInit {
 
-  fullName?: string;
-  username?: string;
-  membershipId?: string;
-  loading = false;
+  @Input()
+  userProfile?: UserProfile;
 
-  constructor(private authService: AuthService) { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-    this.loading = true;
-    this.authService.currentUser.subscribe(
-      user => {
-        if (user) {
-          this.fullName = `${user.firstName} ${user.lastName}`;
-          this.username = user.username;
-          this.membershipId = user.membershipId;
-          this.loading = false;
-        }
-      }
-    );
   }
 
 }

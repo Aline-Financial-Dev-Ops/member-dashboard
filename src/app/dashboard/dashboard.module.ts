@@ -20,7 +20,7 @@ import {TransactionAmountPipe} from './pipes/transaction-amount.pipe';
 import {TransactionEnumPipe} from './pipes/transaction-enum.pipe';
 import {TransactionDescriptionPipe} from './pipes/transaction-description.pipe';
 import {SortToggleComponent} from './transactions-view/sort-toggle/sort-toggle.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TransactionRowComponent} from './transactions-view/transaction-row/transaction-row.component';
 import {TransactionsTableComponent} from './transactions-view/transactions-table/transactions-table.component';
 import {SearchTransactionsComponent} from './transactions-view/search-transactions/search-transactions.component';
@@ -32,6 +32,8 @@ import {BreakpointDetectorComponent} from '@dashboard/breakpoint-detector/breakp
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { ProfileFormComponent } from './profile-form/profile-form.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { EditProfileInfoComponent } from './edit-profile-info/edit-profile-info.component';
+import {FormControlLabelPipe} from '@dashboard/pipes/form-control-label.pipe';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     TransactionAmountPipe,
     TransactionEnumPipe,
     TransactionDescriptionPipe,
+    FormControlLabelPipe,
     SortToggleComponent,
     TransactionRowComponent,
     TransactionsTableComponent,
@@ -59,19 +62,21 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     BreakpointDetectorComponent,
     ProfilePageComponent,
     ProfileFormComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    EditProfileInfoComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    LogoModule,
-    AppIconsModule,
-    NgbTooltipModule,
-    NgbPaginationModule,
-    NgbButtonsModule,
-    FormsModule,
-    AppMaskModule,
-    AppCurrencyMaskModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        LogoModule,
+        AppIconsModule,
+        NgbTooltipModule,
+        NgbPaginationModule,
+        NgbButtonsModule,
+        FormsModule,
+        AppMaskModule,
+        AppCurrencyMaskModule,
+        ReactiveFormsModule
+    ]
 })
 export class DashboardModule {}
