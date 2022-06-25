@@ -27,11 +27,11 @@ import {AuthInterceptor} from '@core/interceptors/auth.interceptor';
     AppIconsModule,
     NgbTooltipModule
   ],
-  exports: [
-    HttpClientModule,
-    SingleCharDirective,
-    FormControlValidationIndicatorComponent
-  ],
+    exports: [
+        HttpClientModule,
+        SingleCharDirective,
+        FormControlValidationIndicatorComponent
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

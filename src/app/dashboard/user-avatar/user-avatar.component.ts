@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {SizeProp} from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-user-avatar',
@@ -7,6 +8,11 @@ import {Component} from '@angular/core';
 })
 export class UserAvatarComponent {
 
+  @Input()
+  color: 'light' | 'dark' = 'light';
+
+  @Input()
+  size: SizeProp = '2x';
   constructor() { }
 
 }
