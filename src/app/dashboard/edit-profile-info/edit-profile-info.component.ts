@@ -1,24 +1,28 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserProfile} from '@core/models/user-profile.model';
 import {FormGroup} from '@angular/forms';
 import {UserProfileService} from '@core/services/user-profile.service';
 import {UserProfileUpdate} from '@core/models/user-profile-update.model';
+import {FormProps} from '@dashboard/form-props.interface';
 
 @Component({
   selector: 'app-edit-profile-info',
   templateUrl: './edit-profile-info.component.html',
   styleUrls: ['./edit-profile-info.component.sass']
 })
-export class EditProfileInfoComponent implements OnInit, OnChanges {
+export class EditProfileInfoComponent implements OnInit {
 
   @Input()
   formTitle!: string;
 
   @Input()
-  userProfile?: UserProfile;
+  userProfile!: UserProfile;
 
   @Input()
   formGroup!: FormGroup;
+
+  @Input()
+  formProps!: FormProps;
 
   initialFormValues = {};
 
@@ -30,14 +34,10 @@ export class EditProfileInfoComponent implements OnInit, OnChanges {
   }
 
   constructor(private profileService: UserProfileService) {
-
   }
 
   ngOnInit(): void {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.initialFormValues = this.formGroup.value;
+    this.initialFormValues = {...this.formGroup.value};
   }
 
   saveProfile() {
@@ -58,14 +58,12 @@ export class EditProfileInfoComponent implements OnInit, OnChanges {
       )
   }
 
-  editOrCancel() {
-    if (this.editMode) {
-      this.resetForm();
-    }
-    this.editMode = !this.editMode;
+  edit() {
+    this.editMode = true;
   }
 
-  resetForm() {
+  cancel() {
+    this.editMode = false;
     this.formGroup.setValue(this.initialFormValues);
   }
 
