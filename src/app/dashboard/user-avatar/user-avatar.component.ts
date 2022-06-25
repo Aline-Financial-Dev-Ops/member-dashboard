@@ -13,7 +13,6 @@ export class UserAvatarComponent {
 
   @Input()
   size: SizeProp = '2x';
-
   constructor() { }
 
 }
